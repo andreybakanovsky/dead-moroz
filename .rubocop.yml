@@ -16,27 +16,75 @@ require:
 AllCops:
   NewCops: enable
   Exclude:
-    - 'db/**/*'
-    - 'script/**/*'
-    - 'bin/**/*'
+    - 'db/schema.rb'
+    - 'bin/**'
     - 'config/**/*'
-    - 'node_modules/**/*'
-    - Gemfile
-    - Rakefile
-    - 'spec/rails_helper.rb'
-    - 'spec/spec_helper.rb'
     - 'tmp/**/*'
-    - 'vendor/**/*'
+    - 'vendor/bundle/**/*'
     - '.git/**/*'
 
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
+
 Layout/LineLength:
-  Max: 120  
+  Max: 120
+
+Lint/Loop:
+  Enabled: false  
+
+Lint/DuplicateBranch:
+  Enabled: true
+
+Lint/DuplicateRegexpCharacterClassElement:
+  Enabled: true
+
+Lint/EmptyBlock:
+  Enabled: true
+
+Lint/EmptyClass:
+  Enabled: true
+
+Lint/NoReturnInBeginEndBlocks:
+  Enabled: true
+
+Lint/ToEnumArguments:
+  Enabled: true
+
+Lint/UnmodifiedReduceAccumulator:
+  Enabled: true 
+
+Style/OptionalBooleanParameter:
+  Enabled: false
 
 Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
 
+Style/ArgumentsForwarding:
+  Enabled: true
+
 Layout/HashAlignment:
   Enabled: false
+
+Style/CollectionCompact:
+  Enabled: true
+
+Style/DocumentDynamicEvalDefinition:
+  Enabled: true
+
+Style/NegatedIfElseCondition:
+  Enabled: true
+
+Style/NilLambda:
+  Enabled: true
+
+Style/RedundantArgument:
+  Enabled: true
+
+Style/SwapValues:
+  Enabled: true
 
 Lint/BinaryOperatorWithIdenticalOperands:
   Exclude:
@@ -49,13 +97,19 @@ Metrics/CyclomaticComplexity:
   Enabled: false
 
 Metrics/MethodLength:
-  Enabled: false
+  Max: 20
 
 Metrics/PerceivedComplexity:
   Enabled: false
 
 Metrics/BlockLength:
-  Enabled: false
+  CountComments: true  # count full line comments?
+  Max: 40
+  IgnoredMethods: []
+  Exclude:
+    - 'app/api/**/*'
+    - 'config/routes.rb'
+    - 'spec/**/*'
 
 Rails/Output:
   Exclude:
@@ -69,3 +123,12 @@ RSpec/MultipleExpectations:
 
 Style/Documentation:
   Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+  Include:
+    - 'app/**/*'
+    - 'lib/tasks/**/*'
