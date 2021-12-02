@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :reviews
   resources :gifts
   resources :karmas
+  resources :invitations
 end
