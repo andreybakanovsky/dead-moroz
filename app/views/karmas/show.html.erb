@@ -1,0 +1,12 @@
+<p>
+  <strong>Value:</strong>
+  <%= @karma.value %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @karma.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_karma_path(@karma) %> |
+<%= link_to 'Back', karmas_path %>

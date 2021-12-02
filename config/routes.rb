@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :goods
   resources :reviews
   resources :gifts
+  resources :karmas
 end
