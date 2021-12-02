@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_01_200341) do
+ActiveRecord::Schema.define(version: 2021_12_02_073614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "gifts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.boolean "deads_choice", default: false
+    t.string "imageable_type"
+    t.bigint "imageable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_gifts_on_imageable"
+  end
 
   create_table "goods", force: :cascade do |t|
     t.integer "year", null: false
