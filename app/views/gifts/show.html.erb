@@ -1,17 +1,17 @@
 <p>
   <strong>Name:</strong>
-  <%= gift.name %>
+  <%= @gift.name %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= gift.description %>
+  <%= @gift.description %>
 </p>
 
 <p>
   <strong>Deads choice:</strong>
-  <%= gift.deads_choice %>
+  <%= @gift.deads_choice %>
 </p>
 
-<%= link_to 'Edit', edit_gift_path(gift) %> |
+<%= link_to 'Edit', edit_gift_path(@gift) %> |
 <%= link_to 'Back', gifts_path %>
