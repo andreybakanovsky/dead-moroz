@@ -1,46 +1,44 @@
 class GoodsController < ApplicationController
-  before_action :set_good, only: %i[show edit update destroy]
-
   def index
-    @goods = Good.all
+    goods = Good.all
+    render json: goods
   end
 
-  def show; end
-
-  def new
-    @good = Good.new
+  def show
+    render json: goods
   end
-
-  def edit; end
 
   def create
-    @good = Good.new(good_params)
-
-    if @good.save
-      redirect_to @good, notice: 'Good was successfully created.'
+    good = Good.new(good_params)
+    if good.save
+      render json: good, status: :created
     else
-      render :new
+      render json: good.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    if @good.update(good_params)
-      redirect_to @good, notice: 'Good was successfully updated.'
+    if good.update(good_params)
+      render json: good
     else
-      render :edit
+      render json: good.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @good.destroy
-    redirect_to goods_url, notice: 'Good was successfully destroyed.'
+    good.destroy
+    if good.destroy
+      head :no_content, status: :ok
+    else
+      render json: good.errors, status: :unprocessable_entity
+    end
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_good
-    @good = Good.find(params[:id])
+  def good
+    good ||= Good.find(params[:id])
   end
 
   def good_params

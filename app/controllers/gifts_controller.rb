@@ -1,46 +1,43 @@
 class GiftsController < ApplicationController
-  before_action :set_gift, only: %i[show edit update destroy]
-
   def index
-    @gifts = Gift.all
+    gifts = Gift.all
+    render json: gifts
   end
 
-  def show; end
-
-  def new
-    @gift = Gift.new
+  def show
+    render json: gifts
   end
-
-  def edit; end
 
   def create
-    @gift = Gift.new(gift_params)
-
-    if @gift.save
-      redirect_to @gift, notice: 'Gift was successfully created.'
+    gift = Gift.new(gift_params)
+    if gift.save
+      render json: gift, status: :created
     else
-      render :new
+      render json: gift.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    if @gift.update(gift_params)
-      redirect_to @gift, notice: 'Gift was successfully updated.'
+    if gift.update(gift_params)
+      render json: gift
     else
-      render :edit
+      render json: gift.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @gift.destroy
-    redirect_to gifts_url, notice: 'Gift was successfully destroyed.'
+    gift.destroy
+    if gift.destroy
+      head :no_content, status: :ok
+    else
+      render json: gift.errors, status: :unprocessable_entity
+    end
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_gift
-    @gift = Gift.find(params[:id])
+  def gift
+    gift ||= Gift.find(params[:id])
   end
 
   def gift_params

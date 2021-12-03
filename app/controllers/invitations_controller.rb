@@ -1,46 +1,44 @@
 class InvitationsController < ApplicationController
-  before_action :set_invitation, only: %i[show edit update destroy]
-
   def index
-    @invitations = Invitation.all
+    invitations = Invitation.all
+    render json: invitations
   end
 
-  def show; end
-
-  def new
-    @invitation = Invitation.new
+  def show
+    render json: invitations
   end
-
-  def edit; end
 
   def create
-    @invitation = Invitation.new(invitation_params)
-
-    if @invitation.save
-      redirect_to @invitation, notice: 'Invitation was successfully created.'
+    invitation = Invitation.new(invitation_params)
+    if invitation.save
+      render json: invitation, status: :created
     else
-      render :new
+      render json: invitation.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    if @invitation.update(invitation_params)
-      redirect_to @invitation, notice: 'Invitation was successfully updated.'
+    if invitation.update(invitation_params)
+      render json: invitation
     else
-      render :edit
+      render json: uinvitationser.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @invitation.destroy
-    redirect_to invitations_url, notice: 'Invitation was successfully destroyed.'
+    invitation.destroy
+    if invitation.destroy
+      head :no_content, status: :ok
+    else
+      render json: invitation.errors, status: :unprocessable_entity
+    end
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_invitation
-    @invitation = Invitation.find(params[:id])
+  def invitation
+    invitation ||= Invitation.find(params[:id])
   end
 
   def invitation_params

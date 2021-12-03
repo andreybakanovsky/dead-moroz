@@ -1,49 +1,46 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: [:show, :edit, :update, :destroy]
-
   def index
-    @reviews = Review.all
+    reviews = Review.all
+    render json: reviews
   end
 
   def show
-  end
-
-  def new
-    @review = Review.new
-  end
-
-  def edit
+    render json: review
   end
 
   def create
-    @review = Review.new(review_params)
-
+    review = Review.new(review_params)
     if @review.save
-      redirect_to @review, notice: 'Review was successfully created.'
+      render json: review, status: :created
     else
-      render :new
+      render json: review.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    if @review.update(review_params)
-      redirect_to @review, notice: 'Review was successfully updated.'
+    if review.update(review_params)
+      render json: review
     else
-      render :edit
+      render json: review.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @review.destroy
-    redirect_to reviews_url, notice: 'Review was successfully destroyed.'
+    review.destroy
+    if review.destroy
+      head :no_content, status: :ok
+    else
+      render json: review.errors, status: :unprocessable_entity
+    end
   end
 
   private
-    def set_review
-      @review = Review.find(params[:id])
-    end
 
-    def review_params
-      params.require(:review).permit(:grade, :comment)
-    end
+  def review
+    review ||= Review.find(params[:id])
+  end
+
+  def review_params
+    params.require(:review).permit(:grade, :comment)
+  end
 end

@@ -1,50 +1,48 @@
 class KarmasController < ApplicationController
-  before_action :set_karma, only: [:show, :edit, :update, :destroy]
-
   def index
-    @karmas = Karma.all
+    karmas = Karma.all
+    render json: karmas
   end
 
   def show
-  end
-
-  def new
-    @karma = Karma.new
-  end
-
-  def edit
+    render json: karmas
   end
 
   def create
-    @karma = Karma.new(karma_params)
+    karma = Karma.new(karma_params)
 
-    if @karma.save
-      redirect_to @karma, notice: 'Karma was successfully created.'
+    if karma.save
+      render json: karma, status: :created
     else
-      render :new
+      render json: karma.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    if @karma.update(karma_params)
-      redirect_to @karma, notice: 'Karma was successfully updated.'
+    if karma.update(karma_params)
+      render json: karma
     else
-      render :edit
+      render json: karma.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @karma.destroy
-    redirect_to karmas_url, notice: 'Karma was successfully destroyed.'
+    karma.destroy
+    if karma.destroy
+      head :no_content, status: :ok
+    else
+      render json: karma.errors, status: :unprocessable_entity
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_karma
-      @karma = Karma.find(params[:id])
-    end
 
-    def karma_params
-      params.require(:karma).permit(:value, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def karma
+    karma ||= Karma.find(params[:id])
+  end
+
+  def karma_params
+    params.require(:karma).permit(:value, :user_id)
+  end
 end
