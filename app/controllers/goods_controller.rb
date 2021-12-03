@@ -5,7 +5,7 @@ class GoodsController < ApplicationController
   end
 
   def show
-    render json: goods
+    render json: good
   end
 
   def create

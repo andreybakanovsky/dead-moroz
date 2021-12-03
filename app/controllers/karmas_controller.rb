@@ -5,7 +5,7 @@ class KarmasController < ApplicationController
   end
 
   def show
-    render json: karmas
+    render json: karma
   end
 
   def create

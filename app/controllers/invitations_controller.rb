@@ -5,7 +5,7 @@ class InvitationsController < ApplicationController
   end
 
   def show
-    render json: invitations
+    render json: invitation
   end
 
   def create
@@ -21,7 +21,7 @@ class InvitationsController < ApplicationController
     if invitation.update(invitation_params)
       render json: invitation
     else
-      render json: uinvitationser.errors, status: :unprocessable_entity
+      render json: invitation.errors, status: :unprocessable_entity
     end
   end
 
