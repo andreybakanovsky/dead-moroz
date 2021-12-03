@@ -5,7 +5,7 @@ class GiftsController < ApplicationController
   end
 
   def show
-    render json: gifts
+    render json: gift
   end
 
   def create
