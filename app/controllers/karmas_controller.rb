@@ -39,7 +39,7 @@ class KarmasController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def karma
-    karma ||= Karma.find(params[:id])
+    @karma ||= Karma.find(params[:id])
   end
 
   def karma_params

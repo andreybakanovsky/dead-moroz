@@ -37,7 +37,7 @@ class GiftsController < ApplicationController
   private
 
   def gift
-    gift ||= Gift.find(params[:id])
+    @gift ||= Gift.find(params[:id])
   end
 
   def gift_params

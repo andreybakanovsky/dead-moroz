@@ -38,7 +38,7 @@ class GoodsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def good
-    good ||= Good.find(params[:id])
+    @good ||= Good.find(params[:id])
   end
 
   def good_params

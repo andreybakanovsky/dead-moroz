@@ -38,7 +38,7 @@ class InvitationsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def invitation
-    invitation ||= Invitation.find(params[:id])
+    @invitation ||= Invitation.find(params[:id])
   end
 
   def invitation_params
