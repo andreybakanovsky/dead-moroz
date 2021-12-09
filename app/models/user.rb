@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :goods, dependent: :destroy
-  has_many :reviews, as: :imageable, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   has_many :karmas, dependent: :destroy # only for elfs
   has_many :invitations, dependent: :destroy # only for Dead_moroz
   validates :role, presence: true
