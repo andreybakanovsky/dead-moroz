@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe '/goods', type: :request do
   let(:user) { create(:user) }
-  let(:good) { create(:good) }
-
-  before { good }
+  let!(:good) { create(:good) }
 
   describe 'GET /index' do
     it 'renders a successful response' do
@@ -104,21 +102,18 @@ RSpec.describe '/goods', type: :request do
         }
       end
 
-      before { post goods_path, params: { good: new_invalid_attributes } }
+      before { patch good_path(good), params: { good: new_invalid_attributes } }
 
       it 'returns a validation failure message' do
-        binding pry
         expect(response.body).to match(/must be less than or equal to #{Date.current.year}/)
-        expect(response.body).to include("must be less than or equal to #{Date.current.year}") # a variant
       end
 
       it 'return the current value of the field' do
-        expect(good.reload.year).to eq(2021)
+        expect(good.reload.year).to eq(Date.current.year)
       end
 
       it 'rejects the request' do
         expect(response).to be_unprocessable
-        expect(response).to have_http_status(:unprocessable_entity) # a variant - delete
       end
     end
   end
@@ -128,11 +123,11 @@ RSpec.describe '/goods', type: :request do
       expect do
         delete good_path(good)
       end.to change(Good, :count).by(-1)
+    end
 
-      it 'renders a successful response' do
-        delete good_path(good)
-        expect(response).to be_successful
-      end
+    it 'renders a successful response' do
+      delete good_path(good)
+      expect(response).to be_successful
     end
   end
 end
