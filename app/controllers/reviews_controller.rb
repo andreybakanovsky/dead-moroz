@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
 
   def create
     review = Review.new(review_params)
-    if @review.save
+    if review.save
       render json: review, status: :created
     else
       render json: review.errors, status: :unprocessable_entity
@@ -41,6 +41,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:grade, :comment)
+    params.require(:review).permit(:grade, :comment, :user_id, :good_id)
   end
 end
