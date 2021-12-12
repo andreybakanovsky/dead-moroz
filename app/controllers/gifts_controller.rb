@@ -41,6 +41,6 @@ class GiftsController < ApplicationController
   end
 
   def gift_params
-    params.require(:gift).permit(:name, :description, :deads_choice)
+    params.require(:gift).permit(:name, :description, :deads_choice, :giftable_type, :giftable_id)
   end
 end
