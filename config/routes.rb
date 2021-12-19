@@ -13,21 +13,15 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:index, :show]  do
-    resources :karmas
-  end
-
-  resources :users, only: [:index, :show]  do
     resources :goods do 
       resources :gifts
       resources :reviews do
         resources :gifts
       end
     end
+    resources :karmas
+    resources :invitations
   end
-
-  scope '/dead_moroz' do 
-    resources :users, only: [:index, :show] do
-      resources :invitations
-    end
-  end
+ 
+  get '/profile', to: 'users/profiles#show'
 end
