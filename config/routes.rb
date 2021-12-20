@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       delete '/sign_out',       to: 'devise/sessions#destroy'
       post   '/sign_up',        to: 'devise/registrations#create'
       put    '/account_update', to: 'devise/registrations#update'
+      delete '/account_delete', to: 'devise/registrations#destroy'
     end
   end
 
@@ -23,5 +24,5 @@ Rails.application.routes.draw do
     resources :invitations
   end
  
-  get '/profile', to: 'users/profiles#show'
+  resource :profile, only: [:show], controller: 'users/profiles'
 end
