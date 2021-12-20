@@ -17,8 +17,6 @@ RSpec.describe '/users', type: :request do
       get user_path(user)
     end
 
-    after { sign_out user }
-
     it 'returns the user' do
       expect(json).not_to be_empty
     end
@@ -104,8 +102,6 @@ RSpec.describe '/users', type: :request do
 
       before { sign_in user }
 
-      after { sign_out user }
-
       it 'updates the requested user' do
         put account_update_path, params: { user: new_attributes }
         expect(response).to be_unprocessable
@@ -128,8 +124,6 @@ RSpec.describe '/users', type: :request do
         put account_update_path, params: { user: new_invalid_attributes }
       end
 
-      after { sign_out user }
-
       it 'returns a validation failure message' do
         expect(response.body).to include('is too short (minimum is 2 characters)')
       end
@@ -146,8 +140,6 @@ RSpec.describe '/users', type: :request do
 
   describe 'DELETE /destroy' do
     before { sign_in user }
-
-    after { sign_out user }
 
     it 'destroys the requested user' do
       expect do
