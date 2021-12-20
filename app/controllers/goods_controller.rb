@@ -1,6 +1,4 @@
-class GoodsController < ApplicationController
-  skip_before_action :verify_authenticity_token
-
+class GoodsController < ApiController
   def index
     goods = current_user.goods
     render json: goods
