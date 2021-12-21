@@ -1,4 +1,4 @@
-class ReviewsController < ApplicationController
+class ReviewsController < ApiController
   def index
     reviews = Review.all
     render json: reviews
@@ -26,7 +26,6 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    review.destroy
     if review.destroy
       head :no_content, status: :ok
     else

@@ -1,4 +1,4 @@
-class InvitationsController < ApplicationController
+class InvitationsController < ApiController
   def index
     invitations = Invitation.all
     render json: invitations
@@ -26,7 +26,6 @@ class InvitationsController < ApplicationController
   end
 
   def destroy
-    invitation.destroy
     if invitation.destroy
       head :no_content, status: :ok
     else

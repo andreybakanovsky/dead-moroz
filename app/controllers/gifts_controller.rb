@@ -1,4 +1,4 @@
-class GiftsController < ApplicationController
+class GiftsController < ApiController
   def index
     gifts = Gift.all
     render json: gifts
@@ -26,7 +26,6 @@ class GiftsController < ApplicationController
   end
 
   def destroy
-    gift.destroy
     if gift.destroy
       head :no_content, status: :ok
     else

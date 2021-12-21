@@ -1,4 +1,4 @@
-class KarmasController < ApplicationController
+class KarmasController < ApiController
   def index
     karmas = Karma.all
     render json: karmas
@@ -27,7 +27,6 @@ class KarmasController < ApplicationController
   end
 
   def destroy
-    karma.destroy
     if karma.destroy
       head :no_content, status: :ok
     else
