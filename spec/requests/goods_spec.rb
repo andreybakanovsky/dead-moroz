@@ -4,22 +4,24 @@ RSpec.describe '/goods', type: :request do
   let(:user) { create(:user) }
   let!(:good) { create(:good) }
 
+  before { sign_in user }
+
   describe 'GET /index' do
     it 'renders a successful response' do
-      get goods_path
+      get user_goods_path(user_id: user.id)
       expect(response).to be_successful
     end
   end
 
   describe 'GET /show' do
-    before { get good_path(good) }
+    before { get user_good_path(user_id: user.id, id: good.id) }
 
     it 'returns the good' do
       expect(json).not_to be_empty
     end
 
     it 'returns the good with parameters' do
-      expect(json['year']).to eq(2021)
+      expect(json['year']).to eq(Date.current.year)
     end
 
     it 'renders a successful response' do
@@ -39,12 +41,12 @@ RSpec.describe '/goods', type: :request do
 
       it 'creates a new Good' do
         expect do
-          post goods_path, params: { good: valid_attributes }
+          post user_goods_path(user_id: user.id), params: { good: valid_attributes }
         end.to change(Good, :count).by(1)
       end
 
       it 'returns the Good with parameters' do
-        post goods_path, params: { good: valid_attributes }
+        post user_goods_path(user_id: user.id), params: { good: valid_attributes }
         expect(json['content']).to eq('the valid contents')
       end
     end
@@ -60,17 +62,17 @@ RSpec.describe '/goods', type: :request do
 
       it 'does not create a new Good' do
         expect do
-          post goods_path, params: { good: invalid_attributes }
+          post user_goods_path(user_id: user.id), params: { good: invalid_attributes }
         end.to change(Good, :count).by(0)
       end
 
       it 'returns a validation failure message' do
-        post goods_path, params: { good: invalid_attributes }
+        post user_goods_path(user_id: user.id), params: { good: invalid_attributes }
         expect(response.body).to match(/must be greater than or equal to 2000/)
       end
 
       it 'rejects the request' do
-        post goods_path, params: { good: invalid_attributes }
+        post user_goods_path(user_id: user.id), params: { good: invalid_attributes }
         expect(response).to be_unprocessable
       end
     end
@@ -86,7 +88,7 @@ RSpec.describe '/goods', type: :request do
         }
       end
 
-      before { patch good_path(good), params: { good: new_attributes } }
+      before { patch user_good_path(user_id: user.id, id: good.id), params: { good: new_attributes } }
 
       it 'returns the good with parameters' do
         expect(json['content']).to eq('new valid contents')
@@ -102,7 +104,7 @@ RSpec.describe '/goods', type: :request do
         }
       end
 
-      before { patch good_path(good), params: { good: new_invalid_attributes } }
+      before { patch user_good_path(user_id: user.id, id: good.id), params: { good: new_invalid_attributes } }
 
       it 'returns a validation failure message' do
         expect(response.body).to match(/must be less than or equal to #{Date.current.year}/)
@@ -121,12 +123,12 @@ RSpec.describe '/goods', type: :request do
   describe 'DELETE /destroy' do
     it 'destroys the requested good' do
       expect do
-        delete good_path(good)
+        delete user_good_path(user_id: user.id, id: good.id)
       end.to change(Good, :count).by(-1)
     end
 
     it 'renders a successful response' do
-      delete good_path(good)
+      delete user_good_path(user_id: user.id, id: good.id)
       expect(response).to be_successful
     end
   end

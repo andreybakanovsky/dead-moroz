@@ -1,6 +1,6 @@
-class GoodsController < ApplicationController
+class GoodsController < ApiController
   def index
-    goods = Good.all
+    goods = current_user.goods
     render json: goods
   end
 
@@ -9,7 +9,7 @@ class GoodsController < ApplicationController
   end
 
   def create
-    good = Good.new(good_params)
+    good = current_user.goods.build(good_params)
     if good.save
       render json: good, status: :created
     else
@@ -26,7 +26,6 @@ class GoodsController < ApplicationController
   end
 
   def destroy
-    good.destroy
     if good.destroy
       head :no_content, status: :ok
     else
@@ -42,6 +41,6 @@ class GoodsController < ApplicationController
   end
 
   def good_params
-    params.require(:good).permit(:year, :content, :user_id)
+    params.require(:good).permit(:year, :content)
   end
 end
