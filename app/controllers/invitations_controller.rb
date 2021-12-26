@@ -1,4 +1,6 @@
 class InvitationsController < ApiController
+  load_and_authorize_resource
+
   def index
     invitations = Invitation.all
     render json: invitations
@@ -35,9 +37,12 @@ class InvitationsController < ApiController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
+  def user
+    @user ||= User.find(params[:user_id])
+  end
+
   def invitation
-    @invitation ||= Invitation.find(params[:id])
+    @invitation ||= user.invitations.find(params[:id])
   end
 
   def invitation_params

@@ -1,6 +1,8 @@
 class GiftsController < ApiController
+  load_and_authorize_resource
+
   def index
-    gifts = Gift.all
+    gifts = good.requested_gifts.accessible_by(current_ability)
     render json: gifts
   end
 
@@ -9,7 +11,7 @@ class GiftsController < ApiController
   end
 
   def create
-    gift = Gift.new(gift_params)
+    gift = current_user_good.requested_gifts.build(gift_params)
     if gift.save
       render json: gift, status: :created
     else
@@ -35,11 +37,23 @@ class GiftsController < ApiController
 
   private
 
+  def user
+    @user ||= User.find(params[:user_id])
+  end
+
+  def good
+    @good ||= user.goods.find(params[:good_id])
+  end
+
+  def current_user_good
+    @current_user_good ||= current_user.goods.find(params[:good_id])
+  end
+
   def gift
-    @gift ||= Gift.find(params[:id])
+    @gift ||= good.requested_gifts.find(params[:id])
   end
 
   def gift_params
-    params.require(:gift).permit(:name, :description, :deads_choice, :giftable_type, :giftable_id)
+    params.require(:gift).permit(:name, :description, :giftable_type, :giftable_id)
   end
 end

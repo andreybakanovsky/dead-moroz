@@ -1,6 +1,8 @@
 class GoodsController < ApiController
+  load_and_authorize_resource
+
   def index
-    goods = current_user.goods
+    goods = user.goods.accessible_by(current_ability)
     render json: goods
   end
 
@@ -35,7 +37,10 @@ class GoodsController < ApiController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
+  def user
+    @user ||= User.find(params[:user_id])
+  end
+
   def good
     @good ||= Good.find(params[:id])
   end
