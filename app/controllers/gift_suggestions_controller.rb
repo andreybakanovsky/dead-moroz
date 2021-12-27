@@ -2,14 +2,12 @@ class GiftSuggestionsController < ApiController
   load_and_authorize_resource :gift, param_method: :gift_suggestions_params # +
 
   def index
-    gifts = review.suggested_gifts.accessible_by(current_ability)
+    # gifts = review.suggested_gifts.accessible_by(current_ability)
     render json: gifts
   end
 
   def show
-    # @review = Review.accessible_by(current_ability,:show)
-    # @gift = review.suggested_gifts.find(params[:id])
-    @gift ||= review.suggested_gifts.accessible_by(current_ability).find(params[:id])
+    # gift ||= review.suggested_gifts.accessible_by(current_ability).find(params[:id])
     render json: gift
   end
 
@@ -57,7 +55,6 @@ class GiftSuggestionsController < ApiController
   end
 
   def gift
-    # @gift ||= Gift.find(params[:id])
     @gift ||= review.suggested_gifts.find(params[:id])
   end
 

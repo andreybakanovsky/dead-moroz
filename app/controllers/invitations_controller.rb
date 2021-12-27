@@ -11,7 +11,7 @@ class InvitationsController < ApiController
   end
 
   def create
-    invitation = Invitation.new(invitation_params)
+    invitation = user.invitations.build(invitation_params)
     if invitation.save
       render json: invitation, status: :created
     else
@@ -46,6 +46,6 @@ class InvitationsController < ApiController
   end
 
   def invitation_params
-    params.require(:invitation).permit(:email, :expire_at, :utl, :status, :user_id)
+    params.require(:invitation).permit(:email, :expire_at, :url, :status, :user_id)
   end
 end
