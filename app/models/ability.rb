@@ -21,7 +21,7 @@ class Ability
       can :read, Good
       can %i[read create], Review
       can %i[update destroy], Review, author: user
-      can %i[read create], Gift, giftable_type: 'Review'
+      can %i[read create], Gift
       can %i[update destroy], Gift, giftable: { author: user }
       can :read, Karma
     end
@@ -36,7 +36,7 @@ class Ability
       can %i[read create], Gift, giftable_type: 'Review'
       can %i[update destroy], Gift, giftable: { author: user }
       can %i[read create update], Karma
-      can %i[read create update destroy], Invitation
+      can :manage, Invitation
     end
   end
 end

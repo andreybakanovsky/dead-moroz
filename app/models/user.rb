@@ -14,16 +14,4 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
-  def dead_moroz?
-    role == 'dead_moroz'
-  end
-
-  def kid?
-    role == 'kid'
-  end
-
-  def elf?
-    role == 'elf'
-  end
 end
