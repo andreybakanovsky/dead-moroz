@@ -7,7 +7,7 @@ class GiftsController < ApiController
   end
 
   def show
-    render json: gift
+    render json: @gift
   end
 
   def create
