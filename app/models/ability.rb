@@ -12,7 +12,7 @@ class Ability
       can %i[update destroy], Good, child: user
       can %i[read], Gift, giftable_type: 'Good'
       can %i[create], Gift
-      can %i[update destroy], Gift, giftable: { child: user }
+      can %i[update destroy], Gift, giftable_type: 'Good', giftable: { child: user }
     end
 
     if user.elf?
@@ -22,7 +22,7 @@ class Ability
       can %i[read create], Review
       can %i[update destroy], Review, author: user
       can %i[read create], Gift
-      can %i[update destroy], Gift, giftable: { author: user }
+      can %i[update destroy], Gift, giftable_type: 'Review', giftable: { author: user }
       can :read, Karma
     end
 
