@@ -1,4 +1,6 @@
 class InvitationsController < ApiController
+  load_and_authorize_resource
+
   def index
     invitations = Invitation.all
     render json: invitations
@@ -9,7 +11,7 @@ class InvitationsController < ApiController
   end
 
   def create
-    invitation = Invitation.new(invitation_params)
+    invitation = user.invitations.build(invitation_params)
     if invitation.save
       render json: invitation, status: :created
     else
@@ -35,12 +37,15 @@ class InvitationsController < ApiController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
+  def user
+    @user ||= User.find(params[:user_id])
+  end
+
   def invitation
-    @invitation ||= Invitation.find(params[:id])
+    @invitation ||= user.invitations.find(params[:id])
   end
 
   def invitation_params
-    params.require(:invitation).permit(:email, :expire_at, :utl, :status, :user_id)
+    params.require(:invitation).permit(:email, :expire_at, :url, :status, :user_id)
   end
 end

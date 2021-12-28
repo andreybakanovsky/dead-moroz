@@ -1,6 +1,8 @@
 class KarmasController < ApiController
+  load_and_authorize_resource
+
   def index
-    karmas = Karma.all
+    karmas = user.karmas.accessible_by(current_ability)
     render json: karmas
   end
 
@@ -9,7 +11,7 @@ class KarmasController < ApiController
   end
 
   def create
-    karma = Karma.new(karma_params)
+    karma = user.karmas.build(karma_params)
 
     if karma.save
       render json: karma, status: :created
@@ -36,9 +38,12 @@ class KarmasController < ApiController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
+  def user
+    @user ||= User.find(params[:user_id])
+  end
+
   def karma
-    @karma ||= Karma.find(params[:id])
+    @karma ||= user.karmas.find(params[:id])
   end
 
   def karma_params

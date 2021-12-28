@@ -3,6 +3,7 @@
 module Users
   class SessionsController < Devise::SessionsController
     before_action :ensure_params_exist, only: :create
+    before_action :authenticate_user!, except: :create
 
     def create
       build_resource

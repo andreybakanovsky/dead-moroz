@@ -1,6 +1,9 @@
 class ReviewsController < ApiController
+  load_and_authorize_resource
+
   def index
-    reviews = Review.all
+    reviews = good.reviews
+
     render json: reviews
   end
 
@@ -9,7 +12,9 @@ class ReviewsController < ApiController
   end
 
   def create
-    review = Review.new(review_params)
+    review = good.reviews.build(review_params)
+    review.user_id = current_user.id
+
     if review.save
       render json: review, status: :created
     else
@@ -35,11 +40,19 @@ class ReviewsController < ApiController
 
   private
 
+  def user
+    @user ||= User.find(params[:user_id])
+  end
+
+  def good
+    @good ||= user.goods.find(params[:good_id])
+  end
+
   def review
-    @review ||= Review.find(params[:id])
+    @review ||= good.reviews.find(params[:id]) # +
   end
 
   def review_params
-    params.require(:review).permit(:grade, :comment, :user_id, :good_id)
+    params.require(:review).permit(:grade, :comment, :good_id, :user_id)
   end
 end

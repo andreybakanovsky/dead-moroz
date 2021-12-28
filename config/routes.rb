@@ -12,12 +12,12 @@ Rails.application.routes.draw do
       delete '/account_delete', to: 'devise/registrations#destroy'
     end
   end
-
-  resources :users, only: [:index, :show]  do
+  
+  resources :users, only: [:index, :show]  do 
     resources :goods do 
       resources :gifts
       resources :reviews do
-        resources :gifts
+        resources :gifts, controller: 'gift_suggestions'
       end
     end
     resources :karmas

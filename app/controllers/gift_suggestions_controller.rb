@@ -1,17 +1,17 @@
-class GiftsController < ApiController
-  load_and_authorize_resource
+class GiftSuggestionsController < ApiController
+  load_and_authorize_resource :gift, param_method: :gift_suggestions_params, parent: false
 
   def index
-    gifts = good.requested_gifts.accessible_by(current_ability)
+    gifts = review.suggested_gifts.accessible_by(current_ability)
     render json: gifts
   end
 
   def show
-    render json: @gift
+    render json: gift
   end
 
   def create
-    gift = current_user_good.requested_gifts.build(gift_params)
+    gift = review.suggested_gifts.build(gift_suggestions_params)
     if gift.save
       render json: gift, status: :created
     else
@@ -20,7 +20,7 @@ class GiftsController < ApiController
   end
 
   def update
-    if gift.update(gift_params)
+    if gift.update(gift_suggestions_params)
       render json: gift
     else
       render json: gift.errors, status: :unprocessable_entity
@@ -45,15 +45,19 @@ class GiftsController < ApiController
     @good ||= user.goods.find(params[:good_id])
   end
 
-  def current_user_good
-    @current_user_good ||= current_user.goods.find(params[:good_id])
+  def review
+    @review ||= good.reviews.find(params[:review_id])
+  end
+
+  def gifts
+    @gifts ||= review.suggested_gifts
   end
 
   def gift
-    @gift ||= good.requested_gifts.find(params[:id])
+    @gift ||= review.suggested_gifts.find(params[:id])
   end
 
-  def gift_params
-    params.require(:gift).permit(:name, :description, :giftable_type, :giftable_id)
+  def gift_suggestions_params
+    params.require(:gift_suggestion).permit(:name, :description, :giftable_type, :giftable_id)
   end
 end
