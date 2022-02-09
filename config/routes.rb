@@ -8,9 +8,9 @@ Rails.application.routes.draw do
         devise_scope :user do
           post   '/sign_in',        to: 'devise/sessions#create'
           delete '/sign_out',       to: 'devise/sessions#destroy'
-          post   '/sign_up',        to: 'devise/registrations#create'
-          put    '/account_update', to: 'devise/registrations#update'
-          delete '/account_delete', to: 'devise/registrations#destroy'
+          post   '/sign_up',        to: 'api/v1/users/registrations#create'
+          patch  '/account_update', to: 'api/v1/users/registrations#update'
+          delete '/account_delete', to: 'api/v1/users/registrations#destroy'
         end
       end
     end
