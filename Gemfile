@@ -35,6 +35,7 @@ group :development, :test do
   gem 'devise'
   gem 'factory_bot_rails'
   gem 'pry', '~> 0.13.1'
+  gem 'rack-cors'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rubocop', '~> 1.1', require: false
   gem 'rubocop-rails', require: false
