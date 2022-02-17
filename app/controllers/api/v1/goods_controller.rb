@@ -4,7 +4,7 @@ module Api
       load_and_authorize_resource
 
       def index
-        goods = user.goods.accessible_by(current_ability)
+        goods = user.goods.accessible_by(current_ability).order(year: :desc)
         render json: goods
       end
 
