@@ -39,7 +39,7 @@ module Api
         end
 
         def account_update_params
-          params.require(:user).permit(:name, :age)
+          params.require(:user).permit(:name, :age, :avatar)
         end
 
         def update_resource(resource, params)
