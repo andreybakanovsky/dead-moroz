@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_115455) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "api_token", default: -> { "gen_random_uuid()" }
+    t.string "avatar"
     t.index ["api_token"], name: "index_users_on_api_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
