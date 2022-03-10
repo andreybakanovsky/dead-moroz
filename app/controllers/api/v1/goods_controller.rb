@@ -48,7 +48,7 @@ module Api
       end
 
       def good_params
-        params.require(:good).permit(:year, :content)
+        params.require(:good).permit(:year, :content, { images: [] })
       end
     end
   end
