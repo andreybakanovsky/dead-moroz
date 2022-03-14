@@ -69,3 +69,5 @@ gem 'devise'
 
 # Authorization
 gem 'cancancan'
+# Upload files
+gem 'carrierwave', '~> 2.0'

@@ -6,4 +6,5 @@ class Good < ApplicationRecord
   validates :year, presence: true,
          numericality: { greater_than_or_equal_to: 2000, less_than_or_equal_to: proc { |_record| Date.current.year } }
   validates :content, length: { maximum: 1000 }
+  mount_uploaders :images, ImageUploader
 end
