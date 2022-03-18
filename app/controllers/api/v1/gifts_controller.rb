@@ -4,7 +4,7 @@ module Api
       load_and_authorize_resource
 
       def index
-        gifts = good.requested_gifts.accessible_by(current_ability)
+        gifts = good.requested_gifts.accessible_by(current_ability).order(updated_at: :desc)
         render json: gifts
       end
 
@@ -56,7 +56,7 @@ module Api
       end
 
       def gift_params
-        params.require(:gift).permit(:name, :description, :giftable_type, :giftable_id)
+        params.require(:gift).permit(:name, :description, :giftable_type, :giftable_id, { images: [] })
       end
     end
   end
