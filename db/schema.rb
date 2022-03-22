@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_22_115455) do
+ActiveRecord::Schema.define(version: 2022_03_18_163710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_115455) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "giftable_type"
     t.bigint "giftable_id"
+    t.json "images"
     t.index ["giftable_type", "giftable_id"], name: "index_gifts_on_giftable"
   end
 
