@@ -71,3 +71,6 @@ gem 'devise'
 gem 'cancancan'
 # Upload files
 gem 'carrierwave', '~> 2.0'
+
+# Using Amazon S3
+gem 'fog-aws'
