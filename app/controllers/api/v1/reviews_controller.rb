@@ -4,7 +4,7 @@ module Api
       load_and_authorize_resource
 
       def index
-        reviews = good.reviews
+        reviews = good.reviews.order(updated_at: :desc)
 
         render json: reviews
       end
