@@ -81,41 +81,41 @@ good5 = Good.create!(
 kid2 = User.create!(role: 0, name: 'Sofia', age: '8', email: 'user2@gmail.com',
                     password: '123456', password_confirmation: '123456',
                     avatar: 'https://avatars.dicebear.com/api/adventurer/775350.svg')
-good1 = Good.create!(
+good6 = Good.create!(
   year: 2022,
   content: 'I fed birds and squirrels in winter',
   user_id: kid2.id,
   images: [File.open(Rails.root.join('public/images/2_user/good/2022.jpeg'))]
 )
 
-gift1 = Gift.create!(
+gift3 = Gift.create!(
   name: 'A winter jumpsuit for the dog ',
   description: 'Back - 10" (inch), chest - 16", neck - 31", for instance: https://www.aliexpress.com/item/4000053326979.html',
   giftable_type: Good.name,
-  giftable_id: good1.id,
+  giftable_id: good6.id,
   images: [File.open(Rails.root.join('public/images/2_user/gift/dog_clothes_0.png')),
            File.open(Rails.root.join('public/images/2_user/gift/dog_clothes_1.png'))]
 )
-gift2 = Gift.create!(
+gift4 = Gift.create!(
   name: 'Samsung Galaxy S21 Ultra 5G',
   description: description2,
   giftable_type: Good.name,
-  giftable_id: good1.id,
+  giftable_id: good6.id,
   images: [File.open(Rails.root.join('public/images/2_user/gift/galaxy_S21_Ultra.jpg'))]
 )
-good2 = Good.create!(
+good7 = Good.create!(
   year: 2021,
   content: 'I helped my mom to care for flowers',
   user_id: kid2.id,
   images: [File.open(Rails.root.join('public/images/2_user/good/2021.jpeg'))]
 )
-good3 = Good.create!(
+good8 = Good.create!(
   year: 2020,
   content: 'I read the book to my brother in the evenings',
   user_id: kid2.id,
   images: [File.open(Rails.root.join('public/images/2_user/good/2020.jpeg'))]
 )
-good4 = Good.create!(
+good9 = Good.create!(
   year: 2019,
   content: 'I planted a tree and flowers',
   user_id: kid2.id,
@@ -123,13 +123,13 @@ good4 = Good.create!(
            File.open(Rails.root.join('public/images/2_user/good/2019_2.jpeg')),
            File.open(Rails.root.join('public/images/2_user/good/2019_3.jpeg'))]
 )
-good5 = Good.create!(
+good10 = Good.create!(
   year: 2018,
   content: 'I cared for the younger brother',
   user_id: kid2.id,
   images: [File.open(Rails.root.join('public/images/2_user/good/2018.jpeg'))]
 )
-good6 = Good.create!(
+good11 = Good.create!(
   year: 2017,
   content: 'I sheltered a dog',
   user_id: kid2.id,
@@ -161,9 +161,69 @@ kid8 = User.create!(role: 0, name: 'Michelle', age: '10', email: 'user8@gmail.co
                     password: '123456', password_confirmation: '123456',
                     avatar: 'https://avatars.dicebear.com/api/adventurer/516856.svg')
 
-User.create!(role: 1, name: 'Menninkäinen', age: '793', email: 'user3@mail.com',
-             password: '123456', password_confirmation: '123456')
-User.create!(role: 1, name: 'Älva', age: '532', email: 'user4@mail.com',
-             password: '123456', password_confirmation: '123456')
+elf1 = User.create!(role: 1, name: 'Menninkäinen', age: '793', email: 'elf1@gmail.com',
+                    password: '123456', password_confirmation: '123456')
+review1 = Review.create!(
+  user_id: elf1.id,
+  good_id: good1.id,
+  grade: 10,
+  comment: '{"comment":"The lad’s getting stronger!","author":"Menninkäinen"}'
+)
+
+elf2 = User.create!(role: 1, name: 'Älva', age: '532', email: 'elf2@gmail.com',
+                    password: '123456', password_confirmation: '123456')
+review2 = Review.create!(
+  user_id: elf2.id,
+  good_id: good1.id,
+  grade: 9,
+  comment: '{"comment":"stronger and srtonger!","author":"Älva"}'
+)
+
+review3 = Review.create!(
+  user_id: elf2.id,
+  good_id: good6.id,
+  grade: 10,
+  comment: '{"comment":"A caring girl to our friends","author":"Älva"}'
+)
+
+elf3 = User.create!(role: 1, name: 'Tinuviel', age: '479', email: 'elf3@gmail.com',
+                    password: '123456', password_confirmation: '123456')
+review4 = Review.create!(
+  user_id: elf3.id,
+  good_id: good1.id,
+  grade: 7,
+  comment: '{"comment":"a tough kid!","author":"Tinuviel"}'
+)
+review5 = Review.create!(
+  user_id: elf3.id,
+  good_id: good6.id,
+  grade: 8,
+  comment:  '{"comment":"delightful behavior over the years)","author":"Tinuviel"}'
+)
+
+elf4 = User.create!(role: 1, name: 'Sânziana', age: '501', email: 'elf4@gmail.com',
+                    password: '123456', password_confirmation: '123456')
+review6 = Review.create!(
+  user_id: elf4.id,
+  good_id: good1.id,
+  grade: 10,
+  comment: '{"comment":"","author":"Sânziana"}'
+)
+review7 = Review.create!(
+  user_id: elf4.id,
+  good_id: good6.id,
+  grade: 10,
+  comment: '{"comment":"","author":"Sânziana"}'
+)
+
+elf5 = User.create!(role: 1, name: 'Ingálvur', age: '1388', email: 'elf5@gmail.com',
+                    password: '123456', password_confirmation: '123456')
+review8 = Review.create!(
+  user_id: elf5.id,
+  good_id: good6.id,
+  grade: 10,
+  comment: '{"comment":"!!!","author":"Ingálvur"}'
+)
+
 User.create!(role: 2, name: 'Dead Moroz', age: '4571', email: 'user0@mail.com',
              password: '123456', password_confirmation: '123456')
