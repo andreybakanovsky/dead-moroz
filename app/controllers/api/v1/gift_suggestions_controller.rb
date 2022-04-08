@@ -4,7 +4,7 @@ module Api
       load_and_authorize_resource :gift, param_method: :gift_suggestions_params, parent: false
 
       def index
-        gifts = review.suggested_gifts.accessible_by(current_ability)
+        gifts = review.suggested_gifts.accessible_by(current_ability).order(updated_at: :asc)
         render json: gifts
       end
 
@@ -60,7 +60,7 @@ module Api
       end
 
       def gift_suggestions_params
-        params.require(:gift_suggestion).permit(:name, :description, :giftable_type, :giftable_id)
+        params.require(:gift_suggestion).permit(:name, :description, :giftable_type, :giftable_id, { images: [] })
       end
     end
   end
