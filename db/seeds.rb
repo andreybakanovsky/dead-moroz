@@ -24,6 +24,98 @@ description2 = <<~DTEXT
   Could please see full description here https://www.gsmarena.com/samsung_galaxy_s21_ultra_5g-10596.php
 DTEXT
 
+lego_mindstorm_kits = <<~DTEXT
+  The system communicates with an Apple or Android tablet via Bluetooth. \
+  The review notes that the programming language is a bit simplistic, allowing actions to occur \
+  due to stimulus, but no real conditional tests and branches. In addition to motor control, \
+  the device comes with blocks that can sense motion and color (see right). \
+  Builders can integrate the blocks with other Lego designs, too.
+DTEXT
+
+boost_creative_toolbox = <<~DTEXT
+  Discover a top gift for Formula E racing and Porsche fans aged 9+ with this fast-paced LEGO \
+  Technic Formula E Porsche 99X Electric (42137) pull-back race car toy. \
+  Kids enjoy an immersive build, crafting all the details of the Porsche race car, \
+  then recreate all the action of a real race day using the 2 pull-back motors and LEGO Technic AR app. \
+  Bring the race to life Using augmented reality, the app lets kids immerse themselves in the \
+  role of a top Porsche Formula E driver. They'll choosewhich circuit to race on, make decisions \
+  about energy management and use their skills to work their way up in the race. Using the 2 pull-back \
+  motors, kids will decide how much to charge the car's energy before pushing the trigger to see the car \
+  race along the AR track right in front of them! A great introduction to engineering LEGO Technic building \
+  sets feature realistic movement and mechanisms that introduce LEGO builders to the universe of engineering \
+  in an approachable and realistic way.
+DTEXT
+
+lego_mindstorm_kits2 = <<~DTEXT
+  - Robotics construction set with powerful ARM9 processor
+  - Programmable brick with intuitive user interface and sound
+  - 3 interactive servo motors to move robot in multiple directions
+  - Includes infrared, touch and color sensors
+DTEXT
+
+samsung_galaxy_s21 = <<~DTEXT
+  Screen size (inches)- 6.80
+  Touchscreen -	Yes
+  Resolution -	1440x3220 pixels
+  Protection type -	Gorilla Glass
+  Pixels per inch (PPI) -	515
+  -
+  Processor -	2.2GHz octa-core (3x2.8GHz + 4x2.2GHz + 1x2.9GHz)
+  Processor make -	Samsung Exynos 2100
+  RAM -	12GB
+  Internal storage -	128GB
+  -
+  Wi-Fi -	Yes
+  Wi-Fi standards supported -	802.11 a/b/g/n/ac/ax
+  GPS -	Yes
+  Bluetooth -	Yes, v 5.00
+  NFC -	Yes
+  USB Type-C -	Yes
+  Number of SIMs -	2
+DTEXT
+
+samsung_Galaxy_S22 = <<~DTEXT
+  The device features a 6.8 inches Dynamic AMOLED 2X display that has a 1440 x 3200 pixels resolution. \
+  The device comes in Black and others. The smartphone is integrated with a Single SIM (Nano-SIM and/or eSIM) \
+  or Dual SIM (Nano-SIM and/or eSIM, dual stand-by).
+
+  Samsung Galaxy S22 Ultra 5G is packed with 8 GB and 12 GB RAM with 128 GB, 256 GB, 512 GB, and 1 TB internal \
+  storage. It is fueled with a non-removable Li-Po 5000 mAh battery + Fast charging 45W + \
+  USB Power Delivery 3.0 + Fast Qi/PMA wireless charging 15W + Reverse wireless charging 4.5W.
+
+  The rear camera of the smartphone consists of a quad camera, which consists of 108 MP (wide) + \
+  10 MP (telephoto) + 10 MP (telephoto) + 12 MP (ultrawide) while on the front there is a 40 MP camera. \
+  The device runs on the Android 12 + One UI 4.1
+  operating system.
+DTEXT
+
+samsung_galaxy_s21_1 = <<~DTEXT
+  The Samsung Galaxy S21 Ultra 5G doubles up as an excellent device for media consumption. \
+  The 6.8-inch AMOLED display gets incredibly bright, and colours look rich and punchy. \
+  The 5,000mAh battery capacity is the same as what the Galaxy S20 Ultra had, and easily \
+  lasts for more than a full day of heavy to medium usage. The new design makes the Galaxy S21 \
+  Ultra 5G look way better than previous models. Samsung's new contour-cut design for the camera \
+  module is unique, and manages to mask the camera bulge pretty well.
+DTEXT
+
+schwinn = <<~DTEXT
+  Schwinn 24 in. Girl's Bike for Ages 8-Years to 12-Years in Purple S7329TR
+  BEST FOR: All types of neighborhood riders, from school commuters to city explorers
+  SEAT HEIGHT (24″ size): 27″ – 33″
+  WEIGHT (24″ 500 model): 29.7 lbs.
+  GEARS:  All 6-speed with grip shift, except 20″ 100 is a single-speed
+  BRAKES: Dual handbrakes
+DTEXT
+
+jacket = <<~DTEXT
+  Type: Winter Pet Dog Clothes Thick Warm Dogs Jacket Coat with Harness Windproof Puppy \
+  Jumpsuit for Small Medium Large Dogs Cat Bulldog
+  Feature: Windproof/Easy Wear/Comfortable/Soft
+  Material: Fleece
+  Season: Autumn/Winter
+  Color: Grey
+DTEXT
+
 kid = User.create!(role: 0, name: 'Henry', age: '11', email: 'user1@gmail.com',
                    password: '123456', password_confirmation: '123456',
                    avatar: 'https://avatars.dicebear.com/api/adventurer/183208.svg')
@@ -34,14 +126,14 @@ good1 = Good.create!(
   images: [File.open(Rails.root.join('public/images/1_user/good/2022.jpeg')),
            File.open(Rails.root.join('public/images/1_user/good/2022_2.jpeg'))]
 )
-gift1 = Gift.create!(
+Gift.create!(
   name: 'a kit lego electronics',
   description: 'Could you please, something from https://www.browndoggadgets.com/',
   giftable_type: Good.name,
   giftable_id: good1.id,
   images: [File.open(Rails.root.join('public/images/1_user/gift/Logo_electronic.jpeg'))]
 )
-gift2 = Gift.create!(
+Gift.create!(
   name: 'a labrador puppy',
   description: description1,
   giftable_type: Good.name,
@@ -88,7 +180,7 @@ good6 = Good.create!(
   images: [File.open(Rails.root.join('public/images/2_user/good/2022.jpeg'))]
 )
 
-gift3 = Gift.create!(
+Gift.create!(
   name: 'A winter jumpsuit for the dog ',
   description: 'Back - 10" (inch), chest - 16", neck - 31", for instance: https://www.aliexpress.com/item/4000053326979.html',
   giftable_type: Good.name,
@@ -96,7 +188,7 @@ gift3 = Gift.create!(
   images: [File.open(Rails.root.join('public/images/2_user/gift/dog_clothes_0.png')),
            File.open(Rails.root.join('public/images/2_user/gift/dog_clothes_1.png'))]
 )
-gift4 = Gift.create!(
+Gift.create!(
   name: 'Samsung Galaxy S21 Ultra 5G',
   description: description2,
   giftable_type: Good.name,
@@ -170,6 +262,30 @@ review1 = Review.create!(
   comment: '{"comment":"The lad’s getting stronger!","author":"Menninkäinen"}'
 )
 
+Gift.create!(
+  name: 'a labrador puppy',
+  description: "Ok) Let's be the labrador puppy",
+  giftable_type: Review.name,
+  giftable_id: review1.id,
+  images: [File.open(
+    Rails.root.join(
+      '/media/work/Programming/Git/dead-moroz/public/images/11_elf/gift/a_labrador_puppy.jpg'
+    )
+  )]
+)
+
+Gift.create!(
+  name: 'Lego Mindstorm kits',
+  description: lego_mindstorm_kits,
+  giftable_type: Review.name,
+  giftable_id: review1.id,
+  images: [File.open(
+    Rails.root.join(
+      '/media/work/Programming/Git/dead-moroz/public/images/11_elf/gift/Lego_Mindstorm_kits.png'
+    )
+  )]
+)
+
 elf2 = User.create!(role: 1, name: 'Älva', age: '532', email: 'elf2@gmail.com',
                     password: '123456', password_confirmation: '123456')
 review2 = Review.create!(
@@ -179,11 +295,34 @@ review2 = Review.create!(
   comment: '{"comment":"stronger and srtonger!","author":"Älva"}'
 )
 
+Gift.create!(
+  name: 'LEGO Technic Formula E Porsche 99X Electric 42137 Model Building Kit (422 Pieces)',
+  description: boost_creative_toolbox,
+  giftable_type: Review.name,
+  giftable_id: review2.id,
+  images: [File.open(
+    Rails.root.join(
+      '/media/work/Programming/Git/dead-moroz/public/images/12_elf/gift/LEGO_Technic_Formula.png'
+    )
+  )]
+)
 review3 = Review.create!(
   user_id: elf2.id,
   good_id: good6.id,
   grade: 10,
   comment: '{"comment":"A caring girl to our friends","author":"Älva"}'
+)
+
+Gift.create!(
+  name: 'Samsung Galaxy S21 Ultra 5G',
+  description: samsung_galaxy_s21,
+  giftable_type: Review.name,
+  giftable_id: review3.id,
+  images: [File.open(
+    Rails.root.join(
+      '/media/work/Programming/Git/dead-moroz/public/images/12_elf/gift/Samsung_Galaxy_S21_Ultra_5G_2.png'
+    )
+  )]
 )
 
 elf3 = User.create!(role: 1, name: 'Tinuviel', age: '479', email: 'elf3@gmail.com',
@@ -194,11 +333,48 @@ review4 = Review.create!(
   grade: 7,
   comment: '{"comment":"a tough kid!","author":"Tinuviel"}'
 )
+
+Gift.create!(
+  name: 'The labrador puppy',
+  description: 'he is called Charlie',
+  giftable_type: Review.name,
+  giftable_id: review4.id,
+  images: [File.open(
+    Rails.root.join(
+      '/media/work/Programming/Git/dead-moroz/public/images/13_elf/gift/a_labrador_puppy_2.jpeg'
+    )
+  )]
+)
+
 review5 = Review.create!(
   user_id: elf3.id,
   good_id: good6.id,
   grade: 8,
   comment:  '{"comment":"delightful behavior over the years)","author":"Tinuviel"}'
+)
+
+Gift.create!(
+  name: 'Samsung Galaxy S22 Ultra 5G',
+  description: samsung_Galaxy_S22,
+  giftable_type: Review.name,
+  giftable_id: review5.id,
+  images: [File.open(
+    Rails.root.join(
+      '/media/work/Programming/Git/dead-moroz/public/images/13_elf/gift/Samsung_Galaxy_S22_Ultra_5G.png'
+    )
+  )]
+)
+
+Gift.create!(
+  name: 'A jumpsuit for the dog ',
+  description: 'exactly as it was requested',
+  giftable_type: Review.name,
+  giftable_id: review5.id,
+  images: [File.open(
+    Rails.root.join(
+      '/media/work/Programming/Git/dead-moroz/public/images/13_elf/gift/a_jumpsuit.png'
+    )
+  )]
 )
 
 elf4 = User.create!(role: 1, name: 'Sânziana', age: '501', email: 'elf4@gmail.com',
@@ -209,11 +385,47 @@ review6 = Review.create!(
   grade: 10,
   comment: '{"comment":"","author":"Sânziana"}'
 )
+
+Gift.create!(
+  name: 'LEGO® MINDSTORMS® EV3',
+  description: lego_mindstorm_kits2,
+  giftable_type: Review.name,
+  giftable_id: review6.id,
+  images: [File.open(
+    Rails.root.join(
+      '/media/work/Programming/Git/dead-moroz/public/images/14_elf/gift/lego-mindstorms-ev3-us-version_1.jpg'
+    )
+  )]
+)
+
 review7 = Review.create!(
   user_id: elf4.id,
   good_id: good6.id,
   grade: 10,
   comment: '{"comment":"","author":"Sânziana"}'
+)
+Gift.create!(
+  name: 'Samsung Galaxy S21 Ultra 5G',
+  description: samsung_galaxy_s21_1,
+  giftable_type: Review.name,
+  giftable_id: review7.id,
+  images: [File.open(
+    Rails.root.join(
+      '/media/work/Programming/Git/dead-moroz/public/images/14_elf/gift/Samsung_Galaxy_S21_Ultra_5G.png'
+    )
+  )]
+)
+
+Gift.create!(
+  name: 'A warm jumpsuit for the dog',
+  description: jacket,
+  giftable_type: Review.name,
+  giftable_id: review7.id,
+  images: [File.open(
+    Rails.root.join(
+      '/media/work/Programming/Git/dead-moroz/public/images/14_elf/gift/a_jumpsuit.png'
+    )
+  )]
 )
 
 elf5 = User.create!(role: 1, name: 'Ingálvur', age: '1388', email: 'elf5@gmail.com',
@@ -223,6 +435,30 @@ review8 = Review.create!(
   good_id: good6.id,
   grade: 10,
   comment: '{"comment":"!!!","author":"Ingálvur"}'
+)
+
+Gift.create!(
+  name: 'Bike, Schwinn',
+  description: schwinn,
+  giftable_type: Review.name,
+  giftable_id: review8.id,
+  images: [File.open(
+    Rails.root.join(
+      '/media/work/Programming/Git/dead-moroz/public/images/15_elf/gift/bike.png'
+    )
+  )]
+)
+
+Gift.create!(
+  name: 'Dogs Jacket',
+  description: jacket,
+  giftable_type: Review.name,
+  giftable_id: review8.id,
+  images: [File.open(
+    Rails.root.join(
+      '/media/work/Programming/Git/dead-moroz/public/images/15_elf/gift/a_jumpsuit.png'
+    )
+  )]
 )
 
 User.create!(role: 2, name: 'Dead Moroz', age: '4571', email: 'user0@mail.com',
