@@ -18,7 +18,7 @@ class Ability
     if user.elf?
       can :read, User, role: %w[kid elf]
       can :update, User
-      can :read, Good
+      can %i[read translate], Good
       can %i[read create], Review
       can %i[update destroy], Review, author: user
       can %i[read create], Gift

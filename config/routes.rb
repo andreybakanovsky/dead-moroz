@@ -21,6 +21,9 @@ Rails.application.routes.draw do
       root to: 'users#index'         
       resources :users, only: [:index, :show]  do 
         resources :goods do 
+          member do
+            get 'translate'
+          end
           resources :gifts
           resources :reviews do
             resources :gifts, controller: 'gift_suggestions'

@@ -12,6 +12,26 @@ module Api
         render json: good
       end
 
+      def translate
+        translator = Aws::Translate::Client.new(
+          region: Rails.application.credentials.aws_translate[:region],
+          access_key_id: Rails.application.credentials.aws_translate[:access_key_id],
+          secret_access_key: Rails.application.credentials.aws_translate[:secret_access_key]
+        )
+        target_text = good.content
+        response = translator.translate_text({
+          text: target_text,
+          source_language_code: 'en',
+          target_language_code: 'fi',
+          settings: {
+            formality: 'INFORMAL', # accepts FORMAL
+            profanity: 'MASK'
+          }
+        })
+        good.content = response.translated_text
+        render json: good
+      end
+
       def create
         good = current_user.goods.build(good_params)
         if good.save
