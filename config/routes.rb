@@ -21,7 +21,14 @@ Rails.application.routes.draw do
       root to: 'users#index'         
       resources :users, only: [:index, :show]  do 
         resources :goods do 
-          resources :gifts
+          member do
+            get 'translate'
+          end
+          resources :gifts do
+            collection do
+              get 'translate'
+            end
+          end
           resources :reviews do
             resources :gifts, controller: 'gift_suggestions'
           end

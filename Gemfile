@@ -74,3 +74,5 @@ gem 'carrierwave', '~> 2.0'
 
 # Using Amazon S3
 gem 'fog-aws'
+# Official AWS Ruby gem for Amazon Translate
+gem 'aws-sdk-translate'

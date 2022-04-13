@@ -12,6 +12,11 @@ module Api
         render json: good
       end
 
+      def translate
+        good.content = TranslatorServices::Translator.call(good.content)
+        render json: good
+      end
+
       def create
         good = current_user.goods.build(good_params)
         if good.save
