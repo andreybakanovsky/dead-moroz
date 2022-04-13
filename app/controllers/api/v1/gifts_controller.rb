@@ -8,6 +8,14 @@ module Api
         render json: gifts
       end
 
+      def translate
+        gifts = good.requested_gifts.accessible_by(current_ability).order(updated_at: :desc)
+        gifts.map do |gift|
+          gift.name = TranslatorServices::Translator.call(gift.name)
+        end
+        render json: gifts
+      end
+
       def show
         render json: @gift
       end

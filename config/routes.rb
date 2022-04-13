@@ -24,7 +24,11 @@ Rails.application.routes.draw do
           member do
             get 'translate'
           end
-          resources :gifts
+          resources :gifts do
+            collection do
+              get 'translate'
+            end
+          end
           resources :reviews do
             resources :gifts, controller: 'gift_suggestions'
           end
