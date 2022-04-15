@@ -13,7 +13,7 @@ module Api
       end
 
       def translate
-        good.content = Rails.cache.fetch(create_key) do
+        good.content = Rails.cache.fetch(good.cache_key, expires_in: 1.week) do
           TranslatorServices::Translator.call(good.content)
         end
         render json: good
@@ -30,7 +30,6 @@ module Api
 
       def update
         if good.update(good_params)
-          destroy_translate_in_cache
           render json: good
         else
           render json: good.errors, status: :unprocessable_entity
@@ -39,7 +38,6 @@ module Api
 
       def destroy
         if good.destroy
-          destroy_translate_in_cache
           head :no_content, status: :ok
         else
           render json: good.errors, status: :unprocessable_entity
@@ -58,14 +56,6 @@ module Api
 
       def good_params
         params.require(:good).permit(:year, :content, { images: [] })
-      end
-
-      def create_key
-        :"#{good.class.name}#{good.id}"
-      end
-
-      def destroy_translate_in_cache
-        Rails.cache.delete(create_key)
       end
     end
   end
