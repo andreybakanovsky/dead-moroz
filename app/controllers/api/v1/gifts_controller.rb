@@ -11,7 +11,9 @@ module Api
       def translate
         gifts = good.requested_gifts.accessible_by(current_ability).order(updated_at: :desc)
         gifts.map do |gift|
-          gift.name = TranslatorServices::Translator.call(gift.name)
+          gift.name = Rails.cache.fetch(create_key(gift)) do
+            TranslatorServices::Translator.call(gift.name)
+          end
         end
         render json: gifts
       end
@@ -31,6 +33,7 @@ module Api
 
       def update
         if gift.update(gift_params)
+          destroy_translate_in_cache
           render json: gift
         else
           render json: gift.errors, status: :unprocessable_entity
@@ -39,6 +42,7 @@ module Api
 
       def destroy
         if gift.destroy
+          destroy_translate_in_cache
           head :no_content, status: :ok
         else
           render json: gift.errors, status: :unprocessable_entity
@@ -65,6 +69,14 @@ module Api
 
       def gift_params
         params.require(:gift).permit(:name, :description, :giftable_type, :giftable_id, { images: [] })
+      end
+
+      def create_key(gift)
+        :"#{gift.class.name}#{gift.id}"
+      end
+
+      def destroy_translate_in_cache
+        Rails.cache.delete(create_key)
       end
     end
   end
