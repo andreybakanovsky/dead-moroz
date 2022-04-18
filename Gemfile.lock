@@ -136,6 +136,7 @@ GEM
     formatador (1.1.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    hiredis (0.6.3)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.1)
@@ -216,6 +217,7 @@ GEM
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.6.0)
     regexp_parser (2.2.1)
     responders (3.0.1)
       actionpack (>= 5.0)
@@ -329,6 +331,7 @@ DEPENDENCIES
   devise
   factory_bot_rails
   fog-aws
+  hiredis
   listen (~> 3.3)
   pg (~> 1.1)
   pry (~> 0.13.1)
@@ -336,6 +339,7 @@ DEPENDENCIES
   rack-cors
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.1)
+  redis
   rspec-rails (~> 5.0.0)
   rubocop (~> 1.1)
   rubocop-rails

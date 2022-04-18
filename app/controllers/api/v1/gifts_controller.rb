@@ -11,7 +11,9 @@ module Api
       def translate
         gifts = good.requested_gifts.accessible_by(current_ability).order(updated_at: :desc)
         gifts.map do |gift|
-          gift.name = TranslatorServices::Translator.call(gift.name)
+          gift.name = Rails.cache.fetch(cache_key(gift), expires_in: 1.week) do
+            TranslatorServices::Translator.call(gift.name)
+          end
         end
         render json: gifts
       end
@@ -65,6 +67,10 @@ module Api
 
       def gift_params
         params.require(:gift).permit(:name, :description, :giftable_type, :giftable_id, { images: [] })
+      end
+
+      def cache_key(gift)
+        "gift_translation:#{gift.name}"
       end
     end
   end

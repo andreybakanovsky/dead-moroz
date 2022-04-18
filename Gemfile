@@ -76,3 +76,7 @@ gem 'carrierwave', '~> 2.0'
 gem 'fog-aws'
 # Official AWS Ruby gem for Amazon Translate
 gem 'aws-sdk-translate'
+# Redis stores for Ruby on Rails
+gem 'redis'
+# Support for the faster hiredis connection library
+gem 'hiredis'

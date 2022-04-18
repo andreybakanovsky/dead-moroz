@@ -13,7 +13,9 @@ module Api
       end
 
       def translate
-        good.content = TranslatorServices::Translator.call(good.content)
+        good.content = Rails.cache.fetch(good.cache_key, expires_in: 1.week) do
+          TranslatorServices::Translator.call(good.content)
+        end
         render json: good
       end
 
