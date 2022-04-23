@@ -39,6 +39,14 @@ module Api
         end
       end
 
+      def update_dead_choice
+        if gift.update_attribute(:deads_choice, !gift.deads_choice)
+          render json: gift.deads_choice
+        else
+          render json: gift.errors, status: :unprocessable_entity
+        end
+      end
+
       def destroy
         if gift.destroy
           head :no_content, status: :ok

@@ -28,13 +28,13 @@ class Ability
 
     if user.dead_moroz?
       can :read, User
-      can %i[read create], User
+      can %i[read create average_grade good_years suggested_gifts], User
       can %i[update destroy], User
-      can :read, Good
+      can %i[read translate], Good
       can %i[read create], Review
       can %i[update destroy], Review, author: user
-      can %i[read create], Gift, giftable_type: 'Review'
-      can %i[update destroy], Gift, giftable: { author: user }
+      can %i[read create translate update_dead_choice], Gift
+      can %i[update destroy], Gift, giftable_type: 'Review', giftable: { author: user }
       can %i[read create update], Karma
       can :manage, Invitation
     end
