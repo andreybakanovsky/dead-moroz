@@ -28,7 +28,7 @@ class Ability
 
     if user.dead_moroz?
       can :read, User
-      can %i[read create average_grade good_years suggested_gifts], User
+      can %i[read create average_grade good_years suggested_gifts reviews requested_gifts], User
       can %i[update destroy], User
       can %i[read translate], Good
       can %i[read create], Review

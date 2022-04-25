@@ -26,6 +26,21 @@ module Api
         render json: years
       end
 
+      def requested_gifts
+        suggested_gifts = Gift.find_by_sql [
+          "SELECT gifts.id, gifts.name, gifts.description, gifts.images
+          FROM gifts
+          LEFT OUTER JOIN goods ON gifts.giftable_type = 'Good' AND goods.id = gifts.giftable_id AND goods.year = ?
+          WHERE goods.user_id = ?", params[:year], params[:id]
+        ]
+        render json: suggested_gifts
+      end
+
+      def reviews
+        reviews = Review.includes(:good).where(goods: { user_id: params[:id], year: params[:year] })
+        render json: reviews
+      end
+
       def suggested_gifts
         suggested_gifts = Gift.find_by_sql [
           "SELECT gifts.id, gifts.name, gifts.description, gifts.images, gifts.deads_choice FROM gifts

@@ -23,6 +23,8 @@ Rails.application.routes.draw do
         member do
           get 'average_grade'
           get 'good_years'
+          get 'requested_gifts/:year', to: 'users#requested_gifts'
+          get 'reviews/:year', to: 'users#reviews'
           get 'suggested_gifts/:year', to: 'users#suggested_gifts'
         end
         resources :goods do 
