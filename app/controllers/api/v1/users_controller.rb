@@ -13,41 +13,27 @@ module Api
       end
 
       def average_grade
-        avrg = Review.includes(:good).where(goods: { user_id: params[:id] }).average(:grade)
-        # avrg = Review.find_by_sql [
-        #   'SELECT AVG(reviews.grade) FROM reviews
-        #   LEFT OUTER JOIN goods ON goods.id = reviews.good_id WHERE goods.user_id = ?', params[:id]
-        # ]
+        avrg = Statistics::AverageGradeQuery.call(params)
         render json: avrg
       end
 
       def good_years
-        years = Good.select(:year).distinct.where(goods: { user_id: params[:id] }).order(year: :desc)
+        years = Statistics::GoodYearsQuery.call(params)
         render json: years
       end
 
       def requested_gifts
-        suggested_gifts = Gift.find_by_sql [
-          "SELECT gifts.id, gifts.name, gifts.description, gifts.images
-          FROM gifts
-          LEFT OUTER JOIN goods ON gifts.giftable_type = 'Good' AND goods.id = gifts.giftable_id AND goods.year = ?
-          WHERE goods.user_id = ?", params[:year], params[:id]
-        ]
-        render json: suggested_gifts
+        requested_gifts = Statistics::RequestedGiftsQuery.call(params)
+        render json: requested_gifts
       end
 
       def reviews
-        reviews = Review.includes(:good).where(goods: { user_id: params[:id], year: params[:year] })
+        reviews = Statistics::ReviewsQuery.call(params)
         render json: reviews
       end
 
       def suggested_gifts
-        suggested_gifts = Gift.find_by_sql [
-          "SELECT gifts.id, gifts.name, gifts.description, gifts.images, gifts.deads_choice FROM gifts
-          LEFT OUTER JOIN reviews ON gifts.giftable_type = 'Review' AND reviews.id = gifts.giftable_id
-          LEFT OUTER JOIN goods   ON goods.id = reviews.good_id     AND goods.year = ?
-          WHERE goods.user_id = ?", params[:year], params[:id]
-        ]
+        suggested_gifts = Statistics::SuggestedGiftsQuery.call(params)
         render json: suggested_gifts
       end
 
