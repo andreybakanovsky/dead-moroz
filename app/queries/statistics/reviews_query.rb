@@ -1,5 +1,5 @@
 module Statistics
-  class ReviewsQuery < Statistics::BaseQuery
+  class ReviewsQuery < ::BaseQuery
     def execute
       Review.joins(:good).where(goods: { user_id: @params[:id], year: @params[:year] })
       # Review.find_by_sql [

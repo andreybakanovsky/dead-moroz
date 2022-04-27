@@ -1,5 +1,5 @@
 module Statistics
-  class SuggestedGiftsQuery < Statistics::BaseQuery
+  class SuggestedGiftsQuery < ::BaseQuery
     def execute
       Gift
         .select(:id, :name, :description, :images, :deads_choice)

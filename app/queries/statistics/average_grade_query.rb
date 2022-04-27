@@ -1,5 +1,5 @@
 module Statistics
-  class AverageGradeQuery < Statistics::BaseQuery
+  class AverageGradeQuery < ::BaseQuery
     def execute
       Review.joins(:good).where(goods: { user_id: @params[:id] }).average(:grade)
       # Review.find_by_sql [
