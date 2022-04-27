@@ -1,13 +1,5 @@
 module Statistics
-  class SuggestedGiftsQuery
-    def initialize(params)
-      @params = params
-    end
-
-    def self.call(...)
-      new(...).execute
-    end
-
+  class SuggestedGiftsQuery < Statistics::BaseQuery
     def execute
       Gift
         .select(:id, :name, :description, :images, :deads_choice)
