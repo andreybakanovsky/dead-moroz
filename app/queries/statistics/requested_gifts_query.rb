@@ -11,7 +11,7 @@ module Statistics
     def execute
       Gift
         .select(:id, :name, :description, :images)
-        .joins(:good)  # this scope see in the model Gift
+        .joins("INNER JOIN goods ON gifts.giftable_type = 'Good' AND goods.id = gifts.giftable_id")
         .where(goods: { user_id: @params[:id], year: @params[:year] })
         .order(updated_at: :desc)
       # Gift.find_by_sql [
