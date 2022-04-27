@@ -39,6 +39,14 @@ module Api
         end
       end
 
+      def update_dead_choice
+        if gift.update(dead_choice_params)
+          render json: gift.deads_choice
+        else
+          render json: gift.errors, status: :unprocessable_entity
+        end
+      end
+
       def destroy
         if gift.destroy
           head :no_content, status: :ok
@@ -67,6 +75,10 @@ module Api
 
       def gift_params
         params.require(:gift).permit(:name, :description, :giftable_type, :giftable_id, { images: [] })
+      end
+
+      def dead_choice_params
+        params.require(:gift).permit(:deads_choice)
       end
 
       def cache_key(gift)

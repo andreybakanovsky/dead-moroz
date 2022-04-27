@@ -12,6 +12,31 @@ module Api
         render json: user
       end
 
+      def average_grade
+        avrg = Statistics::AverageGradeQuery.call(params)
+        render json: avrg
+      end
+
+      def good_years
+        years = Statistics::GoodYearsQuery.call(params)
+        render json: years
+      end
+
+      def requested_gifts
+        requested_gifts = Statistics::RequestedGiftsQuery.call(params)
+        render json: requested_gifts
+      end
+
+      def reviews
+        reviews = Statistics::ReviewsQuery.call(params)
+        render json: reviews
+      end
+
+      def suggested_gifts
+        suggested_gifts = Statistics::SuggestedGiftsQuery.call(params)
+        render json: suggested_gifts
+      end
+
       private
 
       def user
