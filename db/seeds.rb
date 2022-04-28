@@ -267,11 +267,7 @@ Gift.create!(
   description: "Ok) Let's be the labrador puppy",
   giftable_type: Review.name,
   giftable_id: review1.id,
-  images: [File.open(
-    Rails.root.join(
-      '/media/work/Programming/Git/dead-moroz/public/images/11_elf/gift/a_labrador_puppy.jpg'
-    )
-  )]
+  images: [File.open(Rails.root.join('public/images/11_elf/gift/a_labrador_puppy.jpg'))]
 )
 
 Gift.create!(
@@ -279,11 +275,7 @@ Gift.create!(
   description: lego_mindstorm_kits,
   giftable_type: Review.name,
   giftable_id: review1.id,
-  images: [File.open(
-    Rails.root.join(
-      '/media/work/Programming/Git/dead-moroz/public/images/11_elf/gift/Lego_Mindstorm_kits.png'
-    )
-  )]
+  images: [File.open(Rails.root.join('public/images/11_elf/gift/Lego_Mindstorm_kits.png'))]
 )
 
 elf2 = User.create!(role: 1, name: 'Älva', age: '532', email: 'elf2@gmail.com',
@@ -300,11 +292,7 @@ Gift.create!(
   description: boost_creative_toolbox,
   giftable_type: Review.name,
   giftable_id: review2.id,
-  images: [File.open(
-    Rails.root.join(
-      '/media/work/Programming/Git/dead-moroz/public/images/12_elf/gift/LEGO_Technic_Formula.png'
-    )
-  )]
+  images: [File.open(Rails.root.join('public/images/12_elf/gift/LEGO_Technic_Formula.png'))]
 )
 review3 = Review.create!(
   user_id: elf2.id,
@@ -319,9 +307,7 @@ Gift.create!(
   giftable_type: Review.name,
   giftable_id: review3.id,
   images: [File.open(
-    Rails.root.join(
-      '/media/work/Programming/Git/dead-moroz/public/images/12_elf/gift/Samsung_Galaxy_S21_Ultra_5G_2.png'
-    )
+    Rails.root.join('public/images/12_elf/gift/Samsung_Galaxy_S21_Ultra_5G_2.png')
   )]
 )
 
@@ -340,9 +326,7 @@ Gift.create!(
   giftable_type: Review.name,
   giftable_id: review4.id,
   images: [File.open(
-    Rails.root.join(
-      '/media/work/Programming/Git/dead-moroz/public/images/13_elf/gift/a_labrador_puppy_2.jpeg'
-    )
+    Rails.root.join('public/images/13_elf/gift/a_labrador_puppy_2.jpeg')
   )]
 )
 
@@ -358,11 +342,7 @@ Gift.create!(
   description: samsung_Galaxy_S22,
   giftable_type: Review.name,
   giftable_id: review5.id,
-  images: [File.open(
-    Rails.root.join(
-      '/media/work/Programming/Git/dead-moroz/public/images/13_elf/gift/Samsung_Galaxy_S22_Ultra_5G.png'
-    )
-  )]
+  images: [File.open(Rails.root.join('public/images/13_elf/gift/Samsung_Galaxy_S22_Ultra_5G.png'))]
 )
 
 Gift.create!(
@@ -370,11 +350,7 @@ Gift.create!(
   description: 'exactly as it was requested',
   giftable_type: Review.name,
   giftable_id: review5.id,
-  images: [File.open(
-    Rails.root.join(
-      '/media/work/Programming/Git/dead-moroz/public/images/13_elf/gift/a_jumpsuit.png'
-    )
-  )]
+  images: [File.open(Rails.root.join('public/images/13_elf/gift/a_jumpsuit.png'))]
 )
 
 elf4 = User.create!(role: 1, name: 'Sânziana', age: '501', email: 'elf4@gmail.com',
@@ -391,11 +367,7 @@ Gift.create!(
   description: lego_mindstorm_kits2,
   giftable_type: Review.name,
   giftable_id: review6.id,
-  images: [File.open(
-    Rails.root.join(
-      '/media/work/Programming/Git/dead-moroz/public/images/14_elf/gift/lego-mindstorms-ev3-us-version_1.jpg'
-    )
-  )]
+  images: [File.open(Rails.root.join('public/images/14_elf/gift/lego-mindstorms-ev3-us-version_1.jpg'))]
 )
 
 review7 = Review.create!(
@@ -409,11 +381,7 @@ Gift.create!(
   description: samsung_galaxy_s21_1,
   giftable_type: Review.name,
   giftable_id: review7.id,
-  images: [File.open(
-    Rails.root.join(
-      '/media/work/Programming/Git/dead-moroz/public/images/14_elf/gift/Samsung_Galaxy_S21_Ultra_5G.png'
-    )
-  )]
+  images: [File.open(Rails.root.join('public/images/14_elf/gift/Samsung_Galaxy_S21_Ultra_5G.png'))]
 )
 
 Gift.create!(
@@ -421,11 +389,7 @@ Gift.create!(
   description: jacket,
   giftable_type: Review.name,
   giftable_id: review7.id,
-  images: [File.open(
-    Rails.root.join(
-      '/media/work/Programming/Git/dead-moroz/public/images/14_elf/gift/a_jumpsuit.png'
-    )
-  )]
+  images: [File.open(Rails.root.join('public/images/14_elf/gift/a_jumpsuit.png'))]
 )
 
 elf5 = User.create!(role: 1, name: 'Ingálvur', age: '1388', email: 'elf5@gmail.com',
@@ -442,11 +406,7 @@ Gift.create!(
   description: schwinn,
   giftable_type: Review.name,
   giftable_id: review8.id,
-  images: [File.open(
-    Rails.root.join(
-      '/media/work/Programming/Git/dead-moroz/public/images/15_elf/gift/bike.png'
-    )
-  )]
+  images: [File.open(Rails.root.join('public/images/15_elf/gift/bike.png'))]
 )
 
 Gift.create!(
@@ -454,11 +414,7 @@ Gift.create!(
   description: jacket,
   giftable_type: Review.name,
   giftable_id: review8.id,
-  images: [File.open(
-    Rails.root.join(
-      '/media/work/Programming/Git/dead-moroz/public/images/15_elf/gift/a_jumpsuit.png'
-    )
-  )]
+  images: [File.open(Rails.root.join('public/images/15_elf/gift/a_jumpsuit.png'))]
 )
 
 User.create!(role: 2, name: 'Dead Moroz', age: '4571', email: 'user0@mail.com',
