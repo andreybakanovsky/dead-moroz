@@ -42,6 +42,7 @@ module Api
       def update_dead_choice
         if gift.update(dead_choice_params)
           render json: gift.deads_choice
+          update_karma(params[:deads_choice])
         else
           render json: gift.errors, status: :unprocessable_entity
         end
@@ -56,6 +57,16 @@ module Api
       end
 
       private
+
+      def update_karma(deads_choice)
+        suggester = OwnerSuggestedGift.call(params).first
+        if deads_choice == true
+          suggester.karma.increment(:value)
+        else
+          suggester.karma.decrement(:value)
+        end
+        suggester.karma.save!
+      end
 
       def user
         @user ||= User.find(params[:user_id])

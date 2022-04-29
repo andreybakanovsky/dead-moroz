@@ -1,8 +1,11 @@
 class User < ApplicationRecord
   has_many :goods, dependent: :destroy
   has_many :reviews, dependent: :destroy
-  has_many :karmas, dependent: :destroy # only for elfs
+  has_one :karma, dependent: :destroy
   has_many :invitations, dependent: :destroy # only for Dead_moroz
+  has_one :account, dependent: :destroy
+
+  after_create :create_default_karma
 
   validates :role, presence: true
   validates :name, presence: true, length: { minimum: 2, maximum: 20 }
@@ -14,4 +17,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def create_default_karma
+    create_karma if role == 'elf'
+  end
 end
