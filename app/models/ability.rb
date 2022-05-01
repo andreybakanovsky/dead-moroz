@@ -23,7 +23,7 @@ class Ability
       can %i[update destroy], Review, author: user
       can %i[read create translate], Gift
       can %i[update destroy], Gift, giftable_type: 'Review', giftable: { author: user }
-      can :read, Karma
+      can %i[read approved_gifts], Karma
     end
 
     if user.dead_moroz?

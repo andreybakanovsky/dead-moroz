@@ -7,6 +7,11 @@ module Api
         render json: karma
       end
 
+      def approved_gifts
+        approved_gifts = ApprovedGifts.call(params)
+        render json: approved_gifts
+      end
+
       private
 
       def user
