@@ -19,7 +19,7 @@ module Api
       end
 
       def show
-        render json: @gift
+        render json: gift
       end
 
       def create
@@ -59,7 +59,7 @@ module Api
       private
 
       def update_karma(deads_choice)
-        suggester = OwnerSuggestedGift.call(params).first
+        suggester = OwnerSuggestedGift.call(params)
         if deads_choice == true
           suggester.karma.increment(:value)
         else
