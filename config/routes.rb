@@ -40,7 +40,11 @@ Rails.application.routes.draw do
             resources :gifts, controller: 'gift_suggestions'
           end
         end
-        resources :karmas
+        resource :karma, only: [:show] do
+          member do
+            get 'approved_gifts'
+          end
+        end
         resources :invitations
       end
  

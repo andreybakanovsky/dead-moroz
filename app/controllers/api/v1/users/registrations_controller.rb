@@ -35,7 +35,7 @@ module Api
         protected
 
         def sign_up_params
-          params.require(:user).permit(:name, :age, :email, :password, :password_confirmation)
+          params.require(:user).permit(:role, :name, :age, :email, :password, :password_confirmation)
         end
 
         def account_update_params
