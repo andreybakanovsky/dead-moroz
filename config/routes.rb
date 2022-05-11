@@ -45,9 +45,12 @@ Rails.application.routes.draw do
             get 'approved_gifts'
           end
         end
-        resources :invitations
       end
- 
+      resources :invitations do
+        member do
+          get 'send_by_email'
+        end
+      end
       resource :profile, only: [:show], controller: 'users/profiles'
       patch 'gifts/:id', to: 'gifts#update_dead_choice'
     end

@@ -323,6 +323,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk-translate
+  bcrypt
   bootsnap (>= 1.4.4)
   byebug
   cancancan
