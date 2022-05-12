@@ -50,7 +50,7 @@ Rails.application.routes.draw do
         member do
           get 'send_by_email'
         end
-      end
+      post 'invitations/:invitation_digest/signup', to: 'registrations#create', as: :invitation_signup
       resource :profile, only: [:show], controller: 'users/profiles'
       patch 'gifts/:id', to: 'gifts#update_dead_choice'
     end
