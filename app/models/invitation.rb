@@ -10,11 +10,11 @@ class Invitation < ApplicationRecord
   enum status: { created: 0, sent: 1, seen: 2, accepted: 3, expire: 4 }
 
   def create_token
-    self.token = SecureRandom.uuid
+    self.token = SecureRandom.uuid # v4
     save_digest
   end
 
-  def digest
+  def create_digest
     BCrypt::Password.create(token)
   end
 
@@ -23,6 +23,6 @@ class Invitation < ApplicationRecord
   end
 
   def save_digest
-    update(digest: digest)
+    update(digest: create_digest)
   end
 end
