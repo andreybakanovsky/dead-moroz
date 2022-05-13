@@ -9,7 +9,7 @@ You have been invited to join the deaD Moroz service with the following role: El
 Accepting this invitation will require you to sign up as a deaD Moroz user.
 
 Link to sign up with the Elf role:
-<%=api_v1_invitation_signup_url(@invitation.token, email: @invitation.email, name: @invitation.user_name) %>
+<%= @invitation_url %>
 
 This invitation will expire in <%=Invitation::EXPIRING_PERIOD/86400%> days.
 

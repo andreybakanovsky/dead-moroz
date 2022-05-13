@@ -8,7 +8,7 @@
   with the proper Elf role.
   <br>
   <br>
-  <%=link_to "Accept This Invitation" , api_v1_invitation_signup_url(@invitation.token, email: @invitation.email, name: @invitation.user_name) %>
+  <%=link_to "Accept This Invitation", raw(@invitation_url) %>
   <br>
   <br>
   This invitation will expire in <%=Invitation::EXPIRING_PERIOD/86400%> days.
