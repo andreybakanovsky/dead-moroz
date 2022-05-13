@@ -32,6 +32,15 @@ module Api
           end
         end
 
+        def check_invitation
+          invitation = Invitation.find(params[:invitation_id])
+          if BCrypt::Password.new(invitation.digest) == params[:token]
+            head :ok
+          else
+            head :not_found
+          end
+        end
+
         protected
 
         def sign_up_params
