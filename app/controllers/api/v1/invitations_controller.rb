@@ -4,8 +4,12 @@ module Api
       load_and_authorize_resource
 
       def index
-        invitations = Invitation.all
+        invitations = Invitation.all.order(id: :desc)
         render json: invitations
+      end
+
+      def show
+        render json: invitation
       end
 
       def create
@@ -20,7 +24,7 @@ module Api
       def send_by_email
         invitation.create_token
         InvitationMailer.user_invitation(invitation).deliver_now
-        invitation.update(status: 1, expire_at: invitation.expire_date)
+        invitation.update(status: :sent, expire_at: invitation.expire_date)
         invitation.save
       end
 
