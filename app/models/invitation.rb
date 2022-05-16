@@ -3,11 +3,10 @@ class Invitation < ApplicationRecord
 
   EXPIRING_PERIOD = 3.days
 
-  validates :status, presence: true,
-  numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }
-  validates :email, presence: true
+  enum status: { created: 0, sent: 1, accepted: 2, expired: 3 }
 
-  enum status: { created: 0, sent: 1, seen: 2, accepted: 3, expire: 4 }
+  validates :status, presence: true, inclusion: { in: Invitation.statuses }
+  validates :email, presence: true
 
   def create_token
     self.token = SecureRandom.uuid # v4
