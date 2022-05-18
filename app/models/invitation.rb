@@ -27,7 +27,9 @@ class Invitation < ApplicationRecord
   end
 
   def email_cannot_used_if_taken_by_users
-    errors.add(:email, 'the email address has already been taken') if User.find_by(email: email.downcase).present?
+    return unless (new_record? || created?) && User.find_by(email: email.downcase).present?
+
+    errors.add(:email, 'the email address has already been taken')
   end
 
   def create_digest
