@@ -9,6 +9,9 @@ Rails.application.routes.draw do
           post   '/sign_in',        to: 'devise/sessions#create'
           delete '/sign_out',       to: 'devise/sessions#destroy'
           post   '/sign_up',        to: 'api/v1/users/registrations#create'
+          post   '/sign_up/:invitation_id',
+                                    to: 'api/v1/users/registrations#check_invitation',
+                                    as: :signup_by_invitation
           patch  '/account_update', to: 'api/v1/users/registrations#update'
           delete '/account_delete', to: 'api/v1/users/registrations#destroy'
         end
@@ -45,11 +48,16 @@ Rails.application.routes.draw do
             get 'approved_gifts'
           end
         end
-        resources :invitations
       end
- 
+      resources :invitations do
+        member do
+          get 'send_by_email'
+        end
+      end
       resource :profile, only: [:show], controller: 'users/profiles'
       patch 'gifts/:id', to: 'gifts#update_dead_choice'
     end
   end
+  # get 'signup/:invitation_token', to: 'api/v1/users/registrations#check_invitation', as: :invitation_signup
+  # get 'invitation/:invitation_token', to: 'invitations#check_invitation', as: :invitation_signup
 end

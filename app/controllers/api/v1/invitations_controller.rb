@@ -4,7 +4,7 @@ module Api
       load_and_authorize_resource
 
       def index
-        invitations = Invitation.all
+        invitations = Invitation.all.order(id: :desc)
         render json: invitations
       end
 
@@ -13,12 +13,19 @@ module Api
       end
 
       def create
-        invitation = user.invitations.build(invitation_params)
+        invitation = Invitation.new(invitation_params)
         if invitation.save
           render json: invitation, status: :created
         else
           render json: invitation.errors, status: :unprocessable_entity
         end
+      end
+
+      def send_by_email
+        invitation.create_token
+        InvitationMailer.user_invitation(invitation).deliver_now
+        invitation.update(status: :sent, expire_at: invitation.expire_date)
+        invitation.save
       end
 
       def update
@@ -39,16 +46,12 @@ module Api
 
       private
 
-      def user
-        @user ||= User.find(params[:user_id])
-      end
-
       def invitation
-        @invitation ||= user.invitations.find(params[:id])
+        @invitation ||= invitations.find(params[:id])
       end
 
       def invitation_params
-        params.require(:invitation).permit(:email, :expire_at, :url, :status, :user_id)
+        params.require(:invitation).permit(:email, :expire_at, :user_name, :status)
       end
     end
   end

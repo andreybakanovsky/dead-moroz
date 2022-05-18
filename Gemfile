@@ -80,3 +80,5 @@ gem 'aws-sdk-translate'
 gem 'redis'
 # Support for the faster hiredis connection library
 gem 'hiredis'
+# A password-hashing function https://github.com/bcrypt-ruby/bcrypt-ruby
+gem 'bcrypt'

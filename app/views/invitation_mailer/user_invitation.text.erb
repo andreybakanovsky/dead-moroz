@@ -1,0 +1,21 @@
+The deaD Moroz
+=================================================================================
+
+You've been invited to join the deaD Moroz app as an Elf.
+
+Hi <%= @invitation.user_name.present? ? @invitation.user_name : "there" %>,
+You have been invited to join the deaD Moroz service with the following role: Elf.
+
+Accepting this invitation will require you to sign up as a deaD Moroz user.
+
+Link to sign up with the Elf role:
+<%= @invitation_url %>
+
+This invitation will expire in <%=Invitation::EXPIRING_PERIOD/86400%> days.
+
+If you have any questions, feel free to contact our Support team anytime by email
+dead.moroze22@gmail.com, and we'll respond to your query as fast as we can.
+
+Welcome aboard!
+The deaD Morose Team!
+

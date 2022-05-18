@@ -1,0 +1,22 @@
+<h2>The deaD Moroz</h2>
+<h3>You've been invited to join the deaD Moroz app as an Elf</h3>
+<p>
+  Hi <%= @invitation.user_name.present? ? @invitation.user_name : "there" %>,
+  You have been invited to join the deaD Moroz service with the following role: <b> Elf </b>.
+  <br>
+  Accepting this  invitation will require you to sign up as a deaD Moroz user 
+  with the proper Elf role.
+  <br>
+  <br>
+  <%=link_to "Accept This Invitation", raw(@invitation_url) %>
+  <br>
+  <br>
+  This invitation will expire in <%=Invitation::EXPIRING_PERIOD/86400%> days.
+  <br>
+  If you have any questions, feel free to <a href = "mailto: dead.moroze22@gmail.com">contact our Support team anytime</a>, 
+  and we'll respond to your query as fast as we can.
+  <br>
+  <br>
+  Welcome aboard!
+  The deaD Morose Team!
+</p>

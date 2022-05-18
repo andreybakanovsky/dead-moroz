@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_18_163710) do
+ActiveRecord::Schema.define(version: 2022_05_10_194453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -39,14 +39,13 @@ ActiveRecord::Schema.define(version: 2022_03_18_163710) do
   end
 
   create_table "invitations", force: :cascade do |t|
-    t.string "email"
+    t.string "email", null: false
     t.date "expire_at"
-    t.text "url"
     t.integer "status"
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_invitations_on_user_id"
+    t.string "user_name"
+    t.string "digest"
   end
 
   create_table "karmas", force: :cascade do |t|
@@ -87,7 +86,6 @@ ActiveRecord::Schema.define(version: 2022_03_18_163710) do
   end
 
   add_foreign_key "goods", "users"
-  add_foreign_key "invitations", "users"
   add_foreign_key "karmas", "users"
   add_foreign_key "reviews", "goods"
   add_foreign_key "reviews", "users"
