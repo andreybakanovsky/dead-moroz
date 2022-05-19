@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       root to: 'users#index'         
-      resources :users, only: [:index, :show]  do 
+      resources :users, only: [:index, :show, :destroy]  do 
         member do
           get 'average_grade'
           get 'good_years'

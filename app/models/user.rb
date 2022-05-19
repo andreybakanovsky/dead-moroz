@@ -3,7 +3,6 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_one :karma, dependent: :destroy
   has_many :invitations, dependent: :destroy # only for Dead_moroz
-  has_one :account, dependent: :destroy
 
   after_create :create_default_karma
 

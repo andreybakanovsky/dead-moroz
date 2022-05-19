@@ -12,6 +12,14 @@ module Api
         render json: user
       end
 
+      def destroy
+        if user.destroy
+          head :no_content, status: :ok
+        else
+          render json: user.errors, status: :unprocessable_entity
+        end
+      end
+
       def average_grade
         avrg = Statistics::AverageGradeQuery.call(params)
         render json: avrg
