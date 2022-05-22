@@ -82,3 +82,5 @@ gem 'redis'
 gem 'hiredis'
 # A password-hashing function https://github.com/bcrypt-ruby/bcrypt-ruby
 gem 'bcrypt'
+# Background processing, runs a thread alongside Sidekiq workers to schedule jobs at specified times
+gem 'sidekiq-cron', '~> 1.3'

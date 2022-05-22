@@ -1,0 +1,4 @@
+check_expired_invitation:
+  cron: "0 8 * * *"
+  class: "InvitationExpiredCheckJob"
+  
