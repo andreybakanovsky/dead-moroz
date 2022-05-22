@@ -5,8 +5,7 @@ module InvitationServices
     end
 
     def execute
-      @invitations = Invitation.where('status = ? and expire_at > ?', :sent, Time.current)
-      p "@invitations = #{@invitations}"
+      @invitations = Invitation.where('status = ? and expire_at > ?', :sent, Data.current)
       ExpiredInvitationsMailer.expired_invitation(@invitations).deliver_now if @invitations.any?
     end
   end
