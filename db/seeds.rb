@@ -417,5 +417,5 @@ Gift.create!(
   images: [File.open(Rails.root.join('public/images/15_elf/gift/a_jumpsuit.png'))]
 )
 
-User.create!(role: 2, name: 'Dead Moroz', age: '4571', email: 'user0@mail.com',
+User.create!(role: 2, name: 'Dead Moroz', age: '4571', email: 'dead.moroze22@gmail.com',
              password: '123456', password_confirmation: '123456')
