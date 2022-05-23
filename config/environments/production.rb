@@ -70,7 +70,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
   
   config.action_mailer.delivery_method = :smtp
-  host = 'https://the-dead-moroz-api.herokuapp.com'
+  host = 'https://the-dead-moroz.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
 
   # SMTP settings for gmail
