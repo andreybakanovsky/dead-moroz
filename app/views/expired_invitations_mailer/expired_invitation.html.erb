@@ -1,0 +1,11 @@
+<p>
+  Dear deaD Moroz,
+  you have had the next expired <%=@invitations[1].present? ? "invitation".pluralize : "invitation"%>:
+  <% @invitations.each do |invitation| %>
+    <ul>
+      <li> sent to <%=invitation.email %> at <%=invitation.updated_at %></li>
+    </ul>
+  <% end %>
+  Let me know if you need anything,
+     your background droid!
+</p>
