@@ -1,6 +1,6 @@
 class ExpiredInvitationsMailer < ApplicationMailer
-  def expired_invitation(invitations)
-    @invitations = invitations
+  def expired_invitation(expired_invitations_ids)
+    @invitations_ids = Invitation.where(id: expired_invitations_ids)
 
     mail to: dead_moroz_email, subject: 'Expired invitations'
   end
