@@ -1,6 +1,8 @@
 class Invitation < ApplicationRecord
   attr_accessor :token
 
+  include AASM
+
   EXPIRING_PERIOD = 3.days
 
   enum status: { created: 0, sent: 1, accepted: 2, expired: 3 }
@@ -10,6 +12,23 @@ class Invitation < ApplicationRecord
   validate :email, :email_cannot_used_if_taken_by_users
 
   before_save :downcase_email
+
+  aasm column: :status, enum: true do
+    state :created, initial: true
+    state :sent, :accepted, :expired
+
+    event :sent do
+      transitions from: :created, to: :sent
+    end
+
+    event :accepted do
+      transitions from: :sent, to: :accepted
+    end
+
+    event :expired do
+      transitions from: :sent, to: :expired
+    end
+  end
 
   def create_token
     self.token = SecureRandom.uuid # v4

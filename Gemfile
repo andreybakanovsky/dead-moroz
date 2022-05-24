@@ -84,3 +84,5 @@ gem 'hiredis'
 gem 'bcrypt'
 # Background processing, runs a thread alongside Sidekiq workers to schedule jobs at specified times
 gem 'sidekiq-cron', '~> 1.3'
+# Acts As State Machine in the past)
+gem 'aasm'

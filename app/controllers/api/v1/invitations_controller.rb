@@ -24,7 +24,8 @@ module Api
       def send_by_email
         invitation.create_token
         InvitationMailer.user_invitation(invitation).deliver_now
-        invitation.update(status: :sent, expire_at: invitation.expire_date)
+        invitation.update(expire_at: invitation.expire_date)
+        invitation.sent
         invitation.save
       end
 
