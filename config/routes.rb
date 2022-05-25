@@ -2,10 +2,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   devise_for :users, skip: :all
 
-  concern :paginatable do
-    get 'page_size/:page_size/page/:page', action: :index, on: :collection, as: ''
-  end
-
   scope :api, defaults: { format: :json } do
     scope :v1 do
       scope :authentication do
@@ -26,7 +22,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       root to: 'users#index'         
-      resources :users, concerns: :paginatable, only: [:show, :destroy]  do 
+      resources :users, only: [:index, :show, :destroy]  do 
         member do
           get 'average_grade'
           get 'good_years'
