@@ -86,3 +86,5 @@ gem 'bcrypt'
 gem 'sidekiq-cron', '~> 1.3'
 # Acts As State Machine in the past)
 gem 'aasm'
+# A sophisticated paginator
+gem 'kaminari'
