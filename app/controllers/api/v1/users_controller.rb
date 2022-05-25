@@ -4,8 +4,8 @@ module Api
       load_and_authorize_resource
 
       def index
-        users = User.accessible_by(current_ability)
-        render json: users
+        users = User.accessible_by(current_ability).page(params[:page]).per(params[:page_size])
+        render json: { users: users, metadata: { records_count: User.count } }
       end
 
       def show
