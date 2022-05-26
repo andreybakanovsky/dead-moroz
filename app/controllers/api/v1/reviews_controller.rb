@@ -4,8 +4,11 @@ module Api
       load_and_authorize_resource
 
       def index
-        reviews = good.reviews.order(updated_at: :desc)
-
+        reviews = if current_user.dead_moroz?
+                    good.reviews.order(created_at: :asc)
+                  else
+                    good.reviews.kept.order(created_at: :asc)
+                  end
         render json: reviews
       end
 
@@ -33,7 +36,21 @@ module Api
       end
 
       def destroy
-        if review.destroy
+        if current_user.dead_moroz? && review.author != current_user
+          if review.discard
+            head :no_content, status: :ok
+          else
+            render json: review.errors, status: :unprocessable_entity
+          end
+        elsif review.destroy
+          head :no_content, status: :ok
+        else
+          render json: review.errors, status: :unprocessable_entity
+        end
+      end
+
+      def undiscard
+        if review.undiscard
           head :no_content, status: :ok
         else
           render json: review.errors, status: :unprocessable_entity

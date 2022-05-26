@@ -41,6 +41,9 @@ Rails.application.routes.draw do
           end
           resources :reviews do
             resources :gifts, controller: 'gift_suggestions'
+            member do
+              patch 'undiscard'
+            end
           end
         end
         resource :karma, only: [:show] do
@@ -58,6 +61,4 @@ Rails.application.routes.draw do
       patch 'gifts/:id', to: 'gifts#update_dead_choice'
     end
   end
-  # get 'signup/:invitation_token', to: 'api/v1/users/registrations#check_invitation', as: :invitation_signup
-  # get 'invitation/:invitation_token', to: 'invitations#check_invitation', as: :invitation_signup
-end
+ end
