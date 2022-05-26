@@ -36,13 +36,7 @@ module Api
       end
 
       def destroy
-        if current_user.dead_moroz? && review.author != current_user
-          if review.discard
-            head :no_content, status: :ok
-          else
-            render json: review.errors, status: :unprocessable_entity
-          end
-        elsif review.destroy
+        if review.discard
           head :no_content, status: :ok
         else
           render json: review.errors, status: :unprocessable_entity
