@@ -4,6 +4,7 @@ module Statistics
       Gift
         .select(:id, :name, :description, :images, :deads_choice)
         .joins("INNER JOIN reviews ON reviews.id = gifts.giftable_id AND gifts.giftable_type = 'Review'
+                AND reviews.discarded_at IS NULL
                 INNER JOIN goods ON goods.id = reviews.good_id")
         .where(goods: { user_id: @params[:id], year: @params[:year] })
         .order(created_at: :asc)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_10_194453) do
+ActiveRecord::Schema.define(version: 2022_05_26_083020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 2022_05_10_194453) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "good_id", null: false
     t.bigint "user_id", null: false
+    t.datetime "discarded_at"
+    t.index ["discarded_at"], name: "index_reviews_on_discarded_at"
     t.index ["good_id"], name: "index_reviews_on_good_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end

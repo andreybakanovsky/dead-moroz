@@ -88,3 +88,5 @@ gem 'sidekiq-cron', '~> 1.3'
 gem 'aasm'
 # A sophisticated paginator
 gem 'kaminari'
+# A simple ActiveRecord mixin to add conventions for flagging records as discarded
+gem 'discard'
