@@ -90,3 +90,6 @@ gem 'aasm'
 gem 'kaminari'
 # A simple ActiveRecord mixin to add conventions for flagging records as discarded
 gem 'discard'
+# a search engine, gem
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
