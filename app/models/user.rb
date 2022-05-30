@@ -1,4 +1,12 @@
 class User < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+  mapping do
+    indexes :name
+    indexes :email
+  end
+
   has_many :goods, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_one :karma, dependent: :destroy

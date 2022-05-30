@@ -1,4 +1,6 @@
 class Good < ApplicationRecord
+  include Searchable
+
   after_update :destroy_translation_in_cache
   belongs_to :child, class_name: 'User', foreign_key: 'user_id', inverse_of: :goods
   has_many :reviews, dependent: :destroy

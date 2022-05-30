@@ -1,4 +1,6 @@
 class Invitation < ApplicationRecord
+  include Searchable
+
   attr_accessor :token
 
   include AASM

@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
   include Discard::Model
+  include Searchable
 
   belongs_to :good
   belongs_to :author, class_name: 'User', foreign_key: 'user_id', inverse_of: :reviews
