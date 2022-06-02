@@ -2,6 +2,7 @@ module Api
   module V1
     class SearchController < ApplicationController
       def search
+        authorize! :search_smth, :search
         models = [Gift]
         results = if params[:query].blank?
                     []
