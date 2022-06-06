@@ -1,10 +1,10 @@
 class User < ApplicationRecord
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  include Searchable
 
-  mapping do
-    indexes :name
-    indexes :email
+  mapping dynamic: 'false' do
+    indexes :name, type: :keyword
+    indexes :email, type: :keyword
+    indexes :age, type: :keyword
   end
 
   has_many :goods, dependent: :destroy
