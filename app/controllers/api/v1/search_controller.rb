@@ -20,6 +20,13 @@ module Api
         render json: results
       end
 
+      def review_ids
+        review = Review.find(params[:review_id])
+        good = review.good
+        user = good.child
+        render json: { user_id: user.id, good_id: good.id, review_id: review.id }
+      end
+
       private
 
       def search_params
