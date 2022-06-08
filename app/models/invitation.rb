@@ -2,6 +2,12 @@ class Invitation < ApplicationRecord
   attr_accessor :token
 
   include AASM
+  include Searchable
+
+  mapping dynamic: 'false' do
+    indexes :user_name, type: :text
+    indexes :email, type: :text
+  end
 
   EXPIRING_PERIOD = 3.days
 

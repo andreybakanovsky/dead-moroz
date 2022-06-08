@@ -21,7 +21,9 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      root to: 'users#index'         
+      root to: 'users#index' 
+      get :search, to: 'search#search'
+      get :review_ids, to: 'search#review_ids'
       resources :users, only: [:index, :show, :destroy]  do 
         member do
           get 'average_grade'

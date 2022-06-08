@@ -24,6 +24,7 @@ class Ability
       can %i[read create translate], Gift
       can %i[update destroy], Gift, giftable_type: 'Review', giftable: { author: user }
       can %i[read approved_gifts], Karma
+      can :search_smth, :search
     end
 
     if user.dead_moroz?
@@ -37,6 +38,7 @@ class Ability
       can %i[update destroy], Gift, giftable_type: 'Review', giftable: { author: user }
       can %i[read create update], Karma
       can :manage, Invitation
+      can :search_smth, :search
     end
   end
 end

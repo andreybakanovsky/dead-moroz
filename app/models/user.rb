@@ -1,4 +1,12 @@
 class User < ApplicationRecord
+  include Searchable
+
+  mapping dynamic: 'false' do
+    indexes :name, type: :keyword
+    indexes :email, type: :keyword
+    indexes :age, type: :keyword
+  end
+
   has_many :goods, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_one :karma, dependent: :destroy

@@ -1,5 +1,10 @@
 class Review < ApplicationRecord
   include Discard::Model
+  include Searchable
+
+  mapping dynamic: 'false' do
+    indexes :comment, type: :text
+  end
 
   belongs_to :good
   belongs_to :author, class_name: 'User', foreign_key: 'user_id', inverse_of: :reviews
