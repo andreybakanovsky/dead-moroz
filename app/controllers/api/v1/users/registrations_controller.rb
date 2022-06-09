@@ -18,6 +18,7 @@ module Api
         end
 
         def destroy
+          user = current_user
           if user.destroy
             head :no_content, status: :ok
           else
@@ -26,7 +27,6 @@ module Api
         end
 
         def update
-          super
           user = current_user
           if user.update_without_password account_update_params
             head :no_content, status: :ok
